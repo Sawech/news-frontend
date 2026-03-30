@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 import {
   ArticleListResponse,
   ArticleDetailResponse,
@@ -28,8 +28,10 @@ export class ApiService {
     if (params.page) httpParams = httpParams.set('page', params.page);
     if (params.limit) httpParams = httpParams.set('limit', params.limit);
     if (params.category) httpParams = httpParams.set('category', params.category);
-    if (params.featured !== undefined) httpParams = httpParams.set('featured', String(params.featured));
-    if (params.trending !== undefined) httpParams = httpParams.set('trending', String(params.trending));
+    if (params.featured !== undefined)
+      httpParams = httpParams.set('featured', String(params.featured));
+    if (params.trending !== undefined)
+      httpParams = httpParams.set('trending', String(params.trending));
 
     return this.http.get<ArticleListResponse>(`${this.base}/articles`, { params: httpParams });
   }
@@ -48,6 +50,10 @@ export class ApiService {
   }
 
   subscribeNewsletter(email: string): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`${this.base}/newsletter`, { email }, { withCredentials: true });
+    return this.http.post<{ message: string }>(
+      `${this.base}/newsletter`,
+      { email },
+      { withCredentials: true },
+    );
   }
 }

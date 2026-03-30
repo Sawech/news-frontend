@@ -2,7 +2,7 @@ import { inject, Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 import { AdminUser } from '../models/admin.model';
 
 @Injectable({ providedIn: 'root' })
@@ -19,7 +19,7 @@ export class AuthService {
       const res = await firstValueFrom(
         this.http.get<{ data: AdminUser }>(`${this.adminBase}/auth/me`, {
           withCredentials: true,
-        })
+        }),
       );
       this.currentUser.set(res.data);
     } catch {
@@ -32,15 +32,15 @@ export class AuthService {
       this.http.post<{ user: AdminUser }>(
         `${this.adminBase}/auth/login`,
         { email, password },
-        { withCredentials: true }
-      )
+        { withCredentials: true },
+      ),
     );
     this.currentUser.set(res.user);
   }
 
   async logout(): Promise<void> {
     await firstValueFrom(
-      this.http.delete(`${this.adminBase}/auth/login`, { withCredentials: true })
+      this.http.delete(`${this.adminBase}/auth/login`, { withCredentials: true }),
     );
     this.currentUser.set(null);
     this.router.navigate(['/admin/login']);
