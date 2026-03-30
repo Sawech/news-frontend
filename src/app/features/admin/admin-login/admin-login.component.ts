@@ -98,8 +98,6 @@ import { AuthService } from '../../../core/services/auth.service';
   `,
   styles: [
     `
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Barlow:wght@400;500;600;700&display=swap');
-
       .login-page {
         min-height: 100vh;
         background: #0a0a0a;
