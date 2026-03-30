@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend.vercel.app/api',
+  apiUrl: 'https://news-backend-wfc9.onrender.com/api',
 };
