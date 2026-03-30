@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  // Public routes
   {
     path: '',
     loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
@@ -23,7 +22,6 @@ export const routes: Routes = [
       import('./features/search/search.component').then((m) => m.SearchComponent),
   },
 
-  // Admin routes
   {
     path: 'admin',
     redirectTo: 'admin/dashboard',

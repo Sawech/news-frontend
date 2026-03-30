@@ -19,13 +19,15 @@ import { filter } from 'rxjs';
       <app-footer />
     }
   `,
-  styles: [`
-    :host {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-  `],
+  styles: [
+    `
+      :host {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+    `,
+  ],
 })
 export class App implements OnInit {
   private readonly auth = inject(AuthService);
@@ -34,17 +36,14 @@ export class App implements OnInit {
   isAdminRoute = signal(false);
 
   ngOnInit() {
-    // Restore session from cookie on every page load
     this.auth.restoreSession();
 
-    // Track route changes to toggle navbar/footer visibility
     this.router.events
-      .pipe(filter(e => e instanceof NavigationEnd))
+      .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe((e: NavigationEnd) => {
         this.isAdminRoute.set(e.urlAfterRedirects.startsWith('/admin'));
       });
 
-    // Set initial state
     this.isAdminRoute.set(this.router.url.startsWith('/admin'));
   }
 }

@@ -24,8 +24,6 @@ export class AdminApiService {
 
   private opts = { withCredentials: true };
 
-  // ── ticker ──────────────────────────────────────────────
-
   getAdminTickers(): Observable<{ data: AdminTicker[] }> {
     return this.http.get<{ data: AdminTicker[] }>(`${this.adminBase}/tickers`, this.opts);
   }
@@ -49,8 +47,6 @@ export class AdminApiService {
   deleteTicker(id: string): Observable<{ message: string }> {
     return this.http.delete<{ message: string }>(`${this.adminBase}/tickers/${id}`, this.opts);
   }
-
-  // ── Articles ──────────────────────────────────────────────
 
   getArticles(
     page = 1,
@@ -97,8 +93,6 @@ export class AdminApiService {
     return this.http.delete<{ message: string }>(`${this.adminBase}/articles/${id}`, this.opts);
   }
 
-  // ── Authors ───────────────────────────────────────────────
-
   getAuthors(): Observable<{ data: AdminAuthor[] }> {
     return this.http.get<{ data: AdminAuthor[] }>(`${this.adminBase}/authors`, this.opts);
   }
@@ -110,8 +104,6 @@ export class AdminApiService {
   deleteAuthor(id: string): Observable<{ message: string }> {
     return this.http.delete<{ message: string }>(`${this.adminBase}/authors/${id}`, this.opts);
   }
-
-  // ── Categories (admin — with article counts) ──────────────
 
   getAdminCategories(): Observable<{ data: AdminCategoryWithCount[] }> {
     return this.http.get<{ data: AdminCategoryWithCount[] }>(
@@ -132,13 +124,9 @@ export class AdminApiService {
     return this.http.delete<{ message: string }>(`${this.adminBase}/categories/${id}`, this.opts);
   }
 
-  // ── Categories (public — for article editor dropdowns) ────
-
   getCategories(): Observable<{ data: AdminCategory[] }> {
     return this.http.get<{ data: AdminCategory[] }>(`${this.publicBase}/categories`, this.opts);
   }
-
-  // ── Tags ──────────────────────────────────────────────────
 
   getTags(): Observable<{ data: AdminTag[] }> {
     return this.http.get<{ data: AdminTag[] }>(`${this.publicBase}/tags`, this.opts);
