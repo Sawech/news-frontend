@@ -85,7 +85,7 @@ import { AuthService } from '../../../core/services/auth.service';
         <span class="footer-brand">THE CHRONICLER</span>
         <div class="footer-right">
           <p class="footer-copy">
-            © 2024 The Chronicler. All Rights Reserved. Architectural Integrity in Journalism.
+            © 2026 The Chronicler. All Rights Reserved. Architectural Integrity in Journalism.
           </p>
           <nav class="footer-nav">
             <a href="#" class="footer-link" (click)="$event.preventDefault()">System Status</a>
