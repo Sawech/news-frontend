@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, computed } from '@angular/core';
+import { Component, inject, OnInit, signal, computed, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -21,6 +21,28 @@ export class AdminArticleEditorComponent implements OnInit {
   private readonly api = inject(AdminApiService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+
+  constructor() {
+    effect(() => {
+      const locale = this.form.locale ?? 'en';
+      this.api.getAuthors().subscribe({ next: (r) => this.authors.set(r.data), error: () => {} });
+      this.api
+        .getCategories({ locale })
+        .subscribe({
+          next: (r) => this.categories.set(r.data as AdminCategory[]),
+          error: () => {},
+        });
+      this.api.getTags(locale).subscribe({
+        next: (r) => {
+          this.allTags.set(r.data);
+          this.tagsLoaded.set(true);
+        },
+        error: () => {
+          this.tagsLoaded.set(true);
+        },
+      });
+    });
+  }
 
   articleId = signal<string | null>(null);
   isEdit = computed(() => !!this.articleId());
@@ -69,20 +91,6 @@ export class AdminArticleEditorComponent implements OnInit {
       this.articleId.set(id);
       this.loadArticle(id);
     }
-
-    this.api.getAuthors().subscribe({ next: (r) => this.authors.set(r.data), error: () => {} });
-    this.api
-      .getCategories()
-      .subscribe({ next: (r) => this.categories.set(r.data as AdminCategory[]), error: () => {} });
-    this.api.getTags().subscribe({
-      next: (r) => {
-        this.allTags.set(r.data);
-        this.tagsLoaded.set(true);
-      },
-      error: () => {
-        this.tagsLoaded.set(true);
-      },
-    });
   }
 
   loadArticle(id: string) {
@@ -152,13 +160,16 @@ export class AdminArticleEditorComponent implements OnInit {
 
   onTitleChange(title: string) {
     if (!this.isEdit()) {
-      this.form.slug = title
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .trim()
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .slice(0, 100);
+      this.form.slug =
+        title
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .trim()
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .slice(0, 100) +
+        '-' +
+        this.form.locale;
     }
   }
 

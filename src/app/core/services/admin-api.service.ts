@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 import {
   AdminArticleListResponse,
   AdminArticleDetail,
@@ -12,6 +12,7 @@ import {
   AdminTicker,
   AdminOpinion,
 } from '../models/admin.model';
+import { CategoryQueryParams } from './api.service';
 
 interface AdminCategoryWithCount extends AdminCategory {
   _count?: { articles: number };
@@ -145,12 +146,17 @@ export class AdminApiService {
     return this.http.delete<{ message: string }>(`${this.adminBase}/categories/${id}`, this.opts);
   }
 
-  getCategories(): Observable<{ data: AdminCategory[] }> {
-    return this.http.get<{ data: AdminCategory[] }>(`${this.publicBase}/categories`, this.opts);
+  getCategories(params: CategoryQueryParams = {}): Observable<{ data: AdminCategory[] }> {
+    const httpParams = new HttpParams().set('locale', String(params.locale));
+    return this.http.get<{ data: AdminCategory[] }>(`${this.publicBase}/categories`, {
+      ...this.opts,
+      params: httpParams,
+    });
   }
 
-  getTags(): Observable<{ data: AdminTag[] }> {
-    return this.http.get<{ data: AdminTag[] }>(`${this.publicBase}/tags`, this.opts);
+  getTags(locale: string): Observable<{ data: AdminTag[] }> {
+    const params = new HttpParams().set('locale', locale);
+    return this.http.get<{ data: AdminTag[] }>(`${this.publicBase}/tags`, { ...this.opts, params });
   }
 
   createTag(payload: Omit<AdminTag, 'id'>): Observable<{ data: AdminTag }> {

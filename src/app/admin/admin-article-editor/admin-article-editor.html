@@ -119,7 +119,7 @@
               <button
                 class="locale-btn"
                 [class.locale-btn--active]="form.locale === opt.value"
-                (click)="form.locale = opt.value"
+                (click)="form.locale = opt.value; onTitleChange(form.title)"
                 [id]="'locale-' + opt.value"
                 type="button"
               >
