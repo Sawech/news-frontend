@@ -52,6 +52,30 @@
 }
 
 /* ============================================================
+   DARK MODE TOKENS
+   ============================================================ */
+[data-theme='dark'] {
+  --c-primary: #ff6b6b;
+  --c-primary-container: #e05252;
+  --c-primary-fixed: #5c1111;
+  --c-on-primary: #1a0000;
+  --c-on-primary-fixed: #ffd6d6;
+  --c-background: #141212;
+  --c-surface: #141212;
+  --c-surface-low: #1c1a1a;
+  --c-surface-container: #242121;
+  --c-surface-high: #2e2b2b;
+  --c-surface-highest: #383434;
+  --c-surface-lowest: #0d0b0b;
+  --c-on-surface: #ede0df;
+  --c-on-surface-variant: #c9a8a5;
+  --c-outline-variant: #4a2f2d;
+  --c-surface-tint: #ff6b6b;
+  --gradient-cta: linear-gradient(135deg, #c62828 0%, #e05252 100%);
+  --shadow-float: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
    RESET
    ============================================================ */
 *,
@@ -73,6 +97,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {

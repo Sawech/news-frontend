@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { ApiService } from '../core/services/api.service';
 import { SeoService } from '../core/services/seo.service';
 import { Article } from '../core/models/article.model';
+import { LanguageService } from '../core/services/language.service';
 
 @Component({
   selector: 'app-archive',
@@ -15,6 +16,7 @@ export class ArchiveComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly api = inject(ApiService);
   private readonly seo = inject(SeoService);
+  private readonly lang = inject(LanguageService);
 
   year = signal('');
   articles = signal<Article[]>([]);
@@ -62,7 +64,7 @@ export class ArchiveComponent implements OnInit {
   private loadArticles(year: string) {
     this.loading.set(true);
     this.api
-      .getArticles({ year, page: this.currentPage(), limit: 10 })
+      .getArticles({ year, page: this.currentPage(), limit: 10, locale: this.lang.activeLang() })
       .subscribe((res) => {
         this.articles.set(res.data);
         this.totalArticles.set(res.meta.total);

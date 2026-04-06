@@ -7,6 +7,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher';
 import { LanguageService } from '../../core/services/language.service';
 import { ApiService } from '../../core/services/api.service';
+import { ThemeService } from '../../core/services/theme.service';
 import { Category, Ticker } from '../../core/models/article.model';
 
 @Component({
@@ -26,6 +27,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private api = inject(ApiService);
   private lang = inject(LanguageService);
+  readonly theme = inject(ThemeService);
 
   tickers = signal<Ticker[]>([]);
   scrolled = signal(false);

@@ -1,15 +1,16 @@
 import { ApplicationConfig, provideAppInitializer, inject } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { routes } from './app.routes';
 import { AuthService } from './core/services/auth.service';
 import { LanguageService } from './core/services/language.service';
+import { ThemeService } from './core/services/theme.service';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
     provideHttpClient(withFetch()),
     provideTranslateService({ fallbackLang: 'en' }),
     provideTranslateHttpLoader({ prefix: '/assets/i18n/', suffix: '.json' }),
@@ -20,6 +21,8 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       return inject(LanguageService).init();
     }),
+    provideAppInitializer(() => {
+      inject(ThemeService).init();
+    }),
   ],
 };
-

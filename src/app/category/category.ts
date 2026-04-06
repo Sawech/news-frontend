@@ -5,6 +5,7 @@ import { ApiService } from '../core/services/api.service';
 import { SeoService } from '../core/services/seo.service';
 import { Article, Category } from '../core/models/article.model';
 import { TranslatePipe } from '@ngx-translate/core';
+import { LanguageService } from '../core/services/language.service';
 
 @Component({
   selector: 'app-category',
@@ -16,6 +17,7 @@ export class CategoryComponent implements OnInit {
   route = inject(ActivatedRoute);
   private api = inject(ApiService);
   private seo = inject(SeoService);
+  private lang = inject(LanguageService);
 
   articles = signal<Article[]>([]);
   category = signal<Category | null>(null);
@@ -87,6 +89,7 @@ export class CategoryComponent implements OnInit {
     if (this.activeFilter() === 'trending') params['trending'] = true;
     if (this.activeFilter() === 'week') params['week'] = true;
     if (this.activeFilter() === 'month') params['month'] = true;
+    params['locale'] = this.lang.activeLang();
 
     this.api.getArticles(params as Parameters<ApiService['getArticles']>[0]).subscribe((res) => {
       this.articles.set(res.data);

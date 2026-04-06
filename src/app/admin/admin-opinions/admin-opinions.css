@@ -98,12 +98,15 @@
   width: 38%;
 } /* Opinion */
 .opn-table colgroup col:nth-child(3) {
-  width: 20%;
+  width: 15%;
 } /* Subject */
 .opn-table colgroup col:nth-child(4) {
-  width: 18%;
+  width: 15%;
 } /* Link */
 .opn-table colgroup col:nth-child(5) {
+  width: 8%;
+} /* Lang */
+.opn-table colgroup col:nth-child(6) {
   width: 8%;
 } /* Actions */
 
