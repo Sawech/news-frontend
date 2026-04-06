@@ -1,0 +1,167 @@
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #0d0d0d;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: #111;
+  border-right: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.5rem 1.75rem;
+  border-bottom: 1px solid #1e1e1e;
+  margin-bottom: 1.25rem;
+}
+
+.brand-icon {
+  font-size: 1.25rem;
+  color: #c8a96e;
+}
+
+.brand-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f5f0e8;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  letter-spacing: -0.02em;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 0.75rem;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.nav-item:hover {
+  background: #1a1a1a;
+  color: #aaa;
+}
+
+.nav-item.nav-active {
+  background: rgba(200, 169, 110, 0.12);
+  color: #c8a96e;
+}
+
+.nav-section-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #333;
+  padding: 0 0.85rem;
+  margin: 0.5rem 0 0.2rem;
+}
+
+.settings-link {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-footer {
+  padding: 1.25rem 1rem 0;
+  border-top: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(200, 169, 110, 0.2);
+  color: #c8a96e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.user-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role {
+  font-size: 0.7rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #555;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background: rgba(220, 38, 38, 0.1);
+  color: #f87171;
+}
+
+/* ── Main ── */
+.admin-main {
+  flex: 1;
+  overflow: auto;
+  background: #0d0d0d;
+}

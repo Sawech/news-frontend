@@ -1,0 +1,52 @@
+<footer class="footer">
+  <div class="container footer__grid">
+    <!-- Brand -->
+    <div class="footer__brand">
+      <a routerLink="/" class="footer__logo">THE CHRONICLER</a>
+      <p class="footer__tagline">
+        {{ 'FOOTER.TAGLINE' | translate }}
+      </p>
+    </div>
+
+    <!-- Sections -->
+    <div>
+      <p class="footer__col-title">{{ 'FOOTER.SECTIONS' | translate }}</p>
+      <ul class="footer__links">
+        @for (link of sections(); track link.slug) {
+          <li>
+            <a [routerLink]="['/category', link.slug]" class="footer__link">{{ link.name }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <p class="footer__col-title">{{ 'FOOTER.COMPANY' | translate }}</p>
+      <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="#">{{ 'FOOTER.ABOUT' | translate }}</a>
+        </li>
+        <li>
+          <a class="footer__link" href="#">{{ 'FOOTER.CONTACT' | translate }}</a>
+        </li>
+        <li>
+          <a class="footer__link" href="#">{{ 'FOOTER.PRIVACY' | translate }}</a>
+        </li>
+        <li>
+          <a class="footer__link" href="#">{{ 'FOOTER.TERMS' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Archives -->
+    <div>
+      <p class="footer__col-title">{{ 'FOOTER.ARCHIVES' | translate }}</p>
+      <div class="footer__archives">
+        @for (year of archiveYears; track year) {
+          <a class="footer__link" [routerLink]="['/archive', year]">{{ year }}</a>
+        }
+      </div>
+    </div>
+  </div>
+</footer>

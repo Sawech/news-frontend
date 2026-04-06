@@ -6,44 +6,44 @@
    ============================================================ */
 :root {
   /* Colors */
-  --c-primary:               #b30000;
-  --c-primary-container:     #dd180d;
-  --c-primary-fixed:         #ffdad4;
-  --c-on-primary:            #ffffff;
-  --c-on-primary-fixed:      #410000;
-  --c-background:            #fcf9f8;
-  --c-surface:               #fcf9f8;
-  --c-surface-low:           #f6f3f2;
-  --c-surface-container:     #f0edec;
-  --c-surface-high:          #ebe7e7;
-  --c-surface-highest:       #e5e2e1;
-  --c-surface-lowest:        #ffffff;
-  --c-on-surface:            #1c1b1b;
-  --c-on-surface-variant:    #5b403d;
-  --c-outline-variant:       #e4beba;
-  --c-surface-tint:          #c00000;
+  --c-primary: #b30000;
+  --c-primary-container: #dd180d;
+  --c-primary-fixed: #ffdad4;
+  --c-on-primary: #ffffff;
+  --c-on-primary-fixed: #410000;
+  --c-background: #fcf9f8;
+  --c-surface: #fcf9f8;
+  --c-surface-low: #f6f3f2;
+  --c-surface-container: #f0edec;
+  --c-surface-high: #ebe7e7;
+  --c-surface-highest: #e5e2e1;
+  --c-surface-lowest: #ffffff;
+  --c-on-surface: #1c1b1b;
+  --c-on-surface-variant: #5b403d;
+  --c-outline-variant: #e4beba;
+  --c-surface-tint: #c00000;
 
   /* Typography */
-  --font-headline:  'Work Sans', sans-serif;
-  --font-body:      'Newsreader', serif;
+  --font-headline: 'Work Sans', sans-serif;
+  --font-body: 'Newsreader', serif;
 
   /* Gradients */
-  --gradient-cta:  linear-gradient(135deg, #b30000 0%, #dd180d 100%);
+  --gradient-cta: linear-gradient(135deg, #b30000 0%, #dd180d 100%);
 
   /* Shadows */
-  --shadow-float:  0 12px 32px rgba(28, 27, 27, 0.06);
+  --shadow-float: 0 12px 32px rgba(28, 27, 27, 0.06);
 
   /* Transitions */
-  --transition:    all 0.2s ease;
+  --transition: all 0.2s ease;
 
   /* Spacing scale */
-  --sp-1:  0.25rem;
-  --sp-2:  0.5rem;
-  --sp-3:  0.75rem;
-  --sp-4:  1rem;
-  --sp-5:  1.25rem;
-  --sp-6:  1.5rem;
-  --sp-8:  2rem;
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
   --sp-10: 2.5rem;
   --sp-12: 3rem;
   --sp-16: 4rem;
@@ -54,7 +54,9 @@
 /* ============================================================
    RESET
    ============================================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -93,8 +95,12 @@ button {
 /* ============================================================
    TYPOGRAPHY UTILITIES
    ============================================================ */
-.font-headline { font-family: var(--font-headline); }
-.font-body     { font-family: var(--font-body); }
+.font-headline {
+  font-family: var(--font-headline);
+}
+.font-body {
+  font-family: var(--font-body);
+}
 
 /* Headlines */
 .display-lg {
@@ -173,7 +179,9 @@ button {
   padding: 0 var(--sp-8);
 }
 
-.section-gap { margin-bottom: var(--sp-24); }
+.section-gap {
+  margin-bottom: var(--sp-24);
+}
 
 /* ============================================================
    COMPONENT: BUTTONS
@@ -188,7 +196,7 @@ button {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: var(--sp-3) var(--sp-8);
-  border-radius: 0;           /* HARD RULE: no radius */
+  border-radius: 0; /* HARD RULE: no radius */
   border: none;
   transition: var(--transition);
   cursor: pointer;
@@ -219,7 +227,9 @@ button {
   transform: scaleX(0);
   transition: transform 0.2s ease;
 }
-.btn-ghost:hover::after { transform: scaleX(1); }
+.btn-ghost:hover::after {
+  transform: scaleX(1);
+}
 
 /* ============================================================
    COMPONENT: TAG BADGE
@@ -234,7 +244,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 0;           /* HARD RULE: no radius */
+  border-radius: 0; /* HARD RULE: no radius */
   transition: var(--transition);
   cursor: pointer;
 }
@@ -283,7 +293,7 @@ button {
   opacity: 0.6;
 }
 .input-field:focus {
-  border-bottom-color: var(--c-primary);  /* DESIGN RULE: bottom highlight only */
+  border-bottom-color: var(--c-primary); /* DESIGN RULE: bottom highlight only */
 }
 
 /* ============================================================
@@ -304,7 +314,9 @@ button {
   height: 100%;
   object-fit: cover;
   filter: grayscale(1);
-  transition: filter 0.5s ease, transform 0.5s ease;
+  transition:
+    filter 0.5s ease,
+    transform 0.5s ease;
   transform: scale(1.02);
 }
 .article-card:hover .article-card__thumb img {
@@ -356,7 +368,9 @@ button {
   line-height: 1.8;
   color: var(--c-on-surface);
 }
-.article-body p { margin-bottom: var(--sp-6); }
+.article-body p {
+  margin-bottom: var(--sp-6);
+}
 .article-body h2 {
   font-family: var(--font-headline);
   font-size: 1.875rem;
@@ -384,11 +398,14 @@ button {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.article-body ul, .article-body ol {
+.article-body ul,
+.article-body ol {
   padding-left: var(--sp-6);
   margin-bottom: var(--sp-6);
 }
-.article-body li { margin-bottom: var(--sp-2); }
+.article-body li {
+  margin-bottom: var(--sp-2);
+}
 
 /* Drop-cap */
 .article-body p:first-of-type::first-letter {
@@ -406,7 +423,11 @@ button {
    MATERIAL SYMBOLS
    ============================================================ */
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
   vertical-align: middle;
   font-size: 1.5rem;
 }
@@ -421,4 +442,90 @@ button {
   padding-bottom: var(--sp-4);
   border-bottom: 1px solid rgba(228, 190, 186, 0.3);
   margin-bottom: var(--sp-10);
+}
+
+/* ============================================================
+   RTL OVERRIDES — Arabic layout
+   ============================================================ */
+
+/* Arabic font stack */
+[dir='rtl'] body,
+[dir='rtl'] button:not(.material-symbols-outlined),
+[dir='rtl'] input,
+[dir='rtl'] textarea {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+/* Base direction */
+[dir='rtl'] .container {
+  direction: rtl;
+}
+
+/* Reading progress bar */
+[dir='rtl'] .reading-progress {
+  left: auto;
+  right: 0;
+}
+
+/* Article body */
+[dir='rtl'] .article-body {
+  text-align: right;
+}
+[dir='rtl'] .article-body blockquote {
+  border-left: none;
+  border-right: 4px solid var(--c-primary);
+  padding-left: 0;
+  padding-right: var(--sp-8);
+}
+[dir='rtl'] .article-body ul,
+[dir='rtl'] .article-body ol {
+  padding-left: 0;
+  padding-right: var(--sp-6);
+}
+[dir='rtl'] .article-body p:first-of-type::first-letter {
+  float: right;
+  margin-right: 0;
+  margin-left: var(--sp-3);
+}
+
+/* Buttons */
+[dir='rtl'] .btn-ghost::after {
+  left: auto;
+  right: 0;
+}
+
+/* Inputs */
+[dir='rtl'] .input-field {
+  text-align: right;
+}
+
+/* No-articles card border */
+[dir='rtl'] .no-articles-card {
+  border-left: none;
+  border-right: 4px solid var(--c-primary);
+  padding-left: 0;
+  padding-right: 2.5rem;
+}
+
+/* Filter view spacing */
+[dir='rtl'] .filters__view {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+/* Section header */
+[dir='rtl'] .section-header {
+  flex-direction: row-reverse;
+}
+
+/* Tag badge / chip text */
+[dir='rtl'] .tag-badge,
+[dir='rtl'] .tag-chip {
+  text-align: right;
+}
+
+/* Lang switcher underline */
+[dir='rtl'] .lang-switcher__btn::after {
+  left: 0;
+  right: 0;
 }

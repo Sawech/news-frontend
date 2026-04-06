@@ -1,0 +1,36 @@
+<div class="settings-page">
+  <header class="settings-header">
+    <h1 class="settings-title">Settings</h1>
+    <p class="settings-sub">Account & platform information</p>
+  </header>
+
+  <div class="settings-grid">
+    <!-- Profile Card -->
+    <section class="settings-card">
+      <h2 class="card-title">Your Profile</h2>
+      <div class="profile-block">
+        <div class="profile-avatar">{{ initial() }}</div>
+        <div class="profile-meta">
+          <span class="profile-name">{{ name() }}</span>
+          <span class="profile-email">{{ email() }}</span>
+          <span class="role-badge">{{ role() }}</span>
+        </div>
+      </div>
+
+      <div class="info-rows">
+        <div class="info-row">
+          <span class="info-label">Name</span>
+          <span class="info-value">{{ name() }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <span class="info-value">{{ email() }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Role</span>
+          <span class="info-value">{{ role() }}</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

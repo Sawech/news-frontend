@@ -1,0 +1,73 @@
+{
+  "NAV": {
+    "BREAKING": "Breaking",
+    "SEARCH_PLACEHOLDER": "Search articles, topics, authors…",
+    "SEARCH_BTN": "Search"
+  },
+  "HERO": {
+    "LABEL": "International Desk",
+    "TITLE": "World News",
+    "SUBTITLE": "Reporting from every corner of the globe. From geopolitical shifts to local narratives that resonate across borders.",
+    "BADGE": "Exclusive",
+    "TRENDING": "Trending",
+    "OPINIONS": "Opinions"
+  },
+  "FILTERS": {
+    "LATEST": "Latest",
+    "FEATURED": "Featured",
+    "TRENDING": "Trending",
+    "PAST_WEEK": "Past-Week",
+    "PAST_MONTH": "Past-Month"
+  },
+  "SECTION": {
+    "LATEST_DISPATCHES": "Latest Dispatches",
+    "MORNING_BRIEF": "The Morning Brief",
+    "OPINIONS": "Opinions",
+    "EXPLORE": "Explore Category"
+  },
+  "ARTICLE": {
+    "MIN_READ": "min read",
+    "MIN": "Min",
+    "MIN_READ_FULL": "Min Read",
+    "BY": "By"
+  },
+  "EMPTY": {
+    "NO_RESULTS": "No Results",
+    "NO_DISPATCHES": "No dispatches found",
+    "TRY_FILTER": "Try a different filter or check back later.",
+    "NO_CATEGORY": "No articles found in this category yet."
+  },
+  "SEARCH": {
+    "TITLE": "Search",
+    "SEARCHING": "Searching…",
+    "RESULTS": "results for",
+    "RESULT": "result for",
+    "NO_RESULTS_FOR": "No results for",
+    "HINT": "Try a different term or browse by category.",
+    "PROMPT": "Start typing to search the archive."
+  },
+  "FOOTER": {
+    "TAGLINE": "© 2026 THE CHRONICLER. ARCHITECTURAL PRECISION IN JOURNALISM.",
+    "SECTIONS": "Sections",
+    "COMPANY": "Company",
+    "ARCHIVES": "Archives",
+    "ABOUT": "About",
+    "CONTACT": "Contact",
+    "PRIVACY": "Privacy",
+    "TERMS": "Terms"
+  },
+  "CAT": {
+    "INTERNATIONAL_DESK": "The International Desk",
+    "LATEST": "Latest"
+  },
+  "LANG": {
+    "EN": "EN",
+    "FR": "FR",
+    "AR": "AR"
+  },
+  "PAGINATION": {
+    "PREV": "← Prev",
+    "NEXT": "Next →",
+    "OF": "of"
+  }
+}

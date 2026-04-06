@@ -1,0 +1,161 @@
+<main>
+  <!-- ─── HERO: 8 + 4 asymmetric grid ─────────────────────── -->
+  <div class="container hero__title">
+    <span class="hero__label">{{ 'HERO.LABEL' | translate }}</span>
+    <h1 class="hero__main-title">{{ 'HERO.TITLE' | translate }}</h1>
+    <p class="hero__subtitle">
+      {{ 'HERO.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <section class="hero container">
+    <!-- Lead story: 8 cols -->
+    @if (featuredArticle(); as hero) {
+      <div class="hero__lead" [routerLink]="['/article', hero.slug]">
+        <div class="hero__image-wrap">
+          @if (hero.imageUrl) {
+            <img class="hero__image" [src]="hero.imageUrl" [alt]="hero.title" />
+          }
+          <div class="hero__badge">{{ 'HERO.BADGE' | translate }}</div>
+        </div>
+        <div class="hero__text">
+          <span class="label-md hero__category">{{ hero.category.name }}</span>
+          <h1 class="display-lg">{{ hero.title }}</h1>
+          <p class="hero__deck title-lg">{{ hero.excerpt }}</p>
+        </div>
+      </div>
+    } @else {
+      <div class="hero__lead hero__lead--skeleton"></div>
+    }
+
+    <!-- Sidebar: 4 cols -->
+    <aside class="hero__sidebar">
+      <!-- Morning Brief -->
+      <div class="brief">
+        <h3 class="brief__heading">{{ 'HERO.TRENDING' | translate }}</h3>
+        <ul class="brief__list">
+          @for (item of briefItems(); track item.slug) {
+            <li class="brief__item" [routerLink]="['/article', item.slug]">
+              <span class="brief__time">{{ item.updatedAt | date }}</span>
+              <h4 class="brief__title">{{ item.title }}</h4>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Opinion -->
+      <div class="opinion">
+        <h3 class="opinion__heading">{{ 'HERO.OPINIONS' | translate }}</h3>
+        <div class="opinion__items">
+          @for (op of opinions(); track op.id) {
+            @if (op.pubName || op.content) {
+              <a
+                class="opinion__item"
+                [href]="op.linkUrl || '#'"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p class="opinion__quote">&ldquo;{{ op.content || '—' }}&rdquo;</p>
+                <span class="label-sm opinion__author">— {{ op.pubName || '—' }}</span>
+              </a>
+              @if (!$last) {
+                <div class="opinion__divider"></div>
+              }
+            }
+          }
+        </div>
+      </div>
+    </aside>
+  </section>
+  <!-- ─── FILTERS / VIEW TOGGLE ────────────────────────────── -->
+  <section class="container filters">
+    <div class="filters__tabs">
+      @for (tab of orderedFilterTabs(); track tab.value) {
+        <button
+          class="filters__tab"
+          [class.filters__tab--active]="activeFilter() === tab.value"
+          (click)="loadArticles(tab.value)"
+        >
+          {{ tab.key | translate }}
+        </button>
+      }
+    </div>
+    <!-- filters__view buttons -->
+    <div class="filters__view">
+      <button
+        class="filters__view-btn material-symbols-outlined"
+        [class.filters__view-btn--active]="viewMode() === 'grid'"
+        (click)="setViewMode('grid')"
+      >
+        grid_view
+      </button>
+      <button
+        class="filters__view-btn material-symbols-outlined"
+        [class.filters__view-btn--active]="viewMode() === 'list'"
+        (click)="setViewMode('list')"
+      >
+        view_list
+      </button>
+    </div>
+  </section>
+
+  <!-- ─── LATEST DISPATCHES ────────────────────────────────── -->
+  <section class="container section-gap">
+    <div [class]="viewMode() === 'grid' ? 'articles-grid' : 'articles-list'">
+      @for (article of latestArticles(); track article.slug) {
+        <app-article-card
+          [article]="article"
+          [aspectRatio]="viewMode() === 'grid' ? '1/1' : '16/9'"
+          [listView]="viewMode() === 'list'"
+        />
+      }
+      @if (latestArticles().length === 0) {
+        <div class="no-articles-card">
+          <div>
+            <span class="no-articles-card__eyebrow">{{ 'EMPTY.NO_RESULTS' | translate }}</span>
+            <p class="no-articles-card__heading">{{ 'EMPTY.NO_DISPATCHES' | translate }}</p>
+            <p class="no-articles-card__sub">{{ 'EMPTY.TRY_FILTER' | translate }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  @if (focusArticles().length > 0 && focusCategory()) {
+    <!-- ─── CATEGORY FOCUS: DAILY ──────────────────────────────── -->
+    <section class="focus section-gap">
+      <div class="container focus__grid">
+        <div class="focus__intro">
+          <h2
+            class="headline-xl focus__title"
+            [innerHTML]="focusCategory()?.name?.replace('\n', '<br />')"
+          ></h2>
+          <p class="focus__desc">{{ focusCategory()?.description }}</p>
+          <a [routerLink]="['/category', focusCategory()?.slug]" class="btn btn-primary">{{
+            'SECTION.EXPLORE' | translate
+          }}</a>
+        </div>
+        <div class="focus__articles">
+          @for (article of focusArticles(); track article.slug) {
+            <div class="focus__card" [routerLink]="['/article', article.slug]">
+              <div>
+                @if (article.category) {
+                  <span class="tag-badge">{{ article.category.name }}</span>
+                }
+                <h3 class="focus__card-title">{{ article.title }}</h3>
+              </div>
+              <div class="focus__card-foot">
+                <span class="label-sm" style="color: var(--c-on-surface-variant)"
+                  >{{ article.readTime }} {{ 'ARTICLE.MIN_READ' | translate }}</span
+                >
+                <span class="material-symbols-outlined" style="color: var(--c-primary)"
+                  >arrow_forward</span
+                >
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  }
+</main>

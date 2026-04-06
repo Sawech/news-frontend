@@ -1,0 +1,83 @@
+<div class="ticker">
+  <div class="container ticker__inner">
+    <span class="ticker__label">{{ 'NAV.BREAKING' | translate }}</span>
+    <div class="ticker__viewport">
+      <div class="ticker__track">
+        @for (ticker of tickers(); track ticker.id) {
+          <span class="ticker__text">{{ ticker.content }}</span>
+          <span class="ticker__text">|</span>
+        }
+        <!-- Duplicate for seamless loop -->
+        @for (ticker of tickers(); track 'copy-' + ticker.id) {
+          <span class="ticker__text">{{ ticker.content }}</span>
+          <span class="ticker__text">|</span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="navbar" [class.navbar--scrolled]="scrolled()">
+  <div class="container navbar__inner">
+    <div class="navbar__left">
+      <a routerLink="/" class="navbar__logo">THE CHRONICLER</a>
+      <nav class="navbar__nav">
+        @for (cat of navCategories(); track cat.slug) {
+          <a
+            [routerLink]="['/category', cat.slug]"
+            routerLinkActive="navbar__link--active"
+            class="navbar__link"
+            >{{ cat.name }}</a
+          >
+        }
+      </nav>
+    </div>
+
+    <div class="navbar__right">
+      <!-- Language Switcher -->
+      <app-language-switcher />
+      <!-- Search toggle -->
+      <button class="navbar__icon-btn" (click)="toggleSearch()" aria-label="Search">
+        <span class="material-symbols-outlined">{{ searchOpen() ? 'close' : 'search' }}</span>
+      </button>
+      <!-- Mobile menu -->
+      <button class="navbar__icon-btn navbar__menu-btn" (click)="toggleMenu()" aria-label="Menu">
+        <span class="material-symbols-outlined">{{ menuOpen() ? 'close' : 'menu' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search overlay -->
+  @if (searchOpen()) {
+    <div class="navbar__search-bar container">
+      <input
+        #searchInput
+        class="navbar__search-input"
+        type="text"
+        [placeholder]="'NAV.SEARCH_PLACEHOLDER' | translate"
+        [(ngModel)]="searchQuery"
+        (keydown.enter)="doSearch()"
+        autofocus
+      />
+      <button class="btn btn-primary" (click)="doSearch()">
+        {{ 'NAV.SEARCH_BTN' | translate }}
+      </button>
+    </div>
+  }
+
+  <!-- Mobile nav -->
+  @if (menuOpen()) {
+    <nav class="navbar__mobile-nav">
+      @for (cat of navCategories(); track cat.slug) {
+        <a
+          [routerLink]="['/category', cat.slug]"
+          class="navbar__mobile-link"
+          (click)="menuOpen.set(false)"
+        >
+          {{ cat.name }}
+        </a>
+      }
+    </nav>
+  }
+</header>

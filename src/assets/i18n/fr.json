@@ -1,0 +1,73 @@
+{
+  "NAV": {
+    "BREAKING": "Brèche",
+    "SEARCH_PLACEHOLDER": "Rechercher des articles, sujets, auteurs…",
+    "SEARCH_BTN": "Rechercher"
+  },
+  "HERO": {
+    "LABEL": "Bureau International",
+    "TITLE": "Actualités Mondiales",
+    "SUBTITLE": "Reportages depuis tous les coins du globe. Des évolutions géopolitiques aux récits locaux qui résonnent au-delà des frontières.",
+    "BADGE": "Exclusif",
+    "TRENDING": "Tendances",
+    "OPINIONS": "Opinions"
+  },
+  "FILTERS": {
+    "LATEST": "Récents",
+    "FEATURED": "À la une",
+    "TRENDING": "Tendances",
+    "PAST_WEEK": "Semaine passée",
+    "PAST_MONTH": "Mois passé"
+  },
+  "SECTION": {
+    "LATEST_DISPATCHES": "Dernières Dépêches",
+    "MORNING_BRIEF": "Le Bref du Matin",
+    "OPINIONS": "Opinions",
+    "EXPLORE": "Explorer la Catégorie"
+  },
+  "ARTICLE": {
+    "MIN_READ": "min de lecture",
+    "MIN": "Min",
+    "MIN_READ_FULL": "Min de Lecture",
+    "BY": "Par"
+  },
+  "EMPTY": {
+    "NO_RESULTS": "Aucun Résultat",
+    "NO_DISPATCHES": "Aucune dépêche trouvée",
+    "TRY_FILTER": "Essayez un autre filtre ou revenez plus tard.",
+    "NO_CATEGORY": "Aucun article trouvé dans cette catégorie."
+  },
+  "SEARCH": {
+    "TITLE": "Recherche",
+    "SEARCHING": "Recherche en cours…",
+    "RESULTS": "résultats pour",
+    "RESULT": "résultat pour",
+    "NO_RESULTS_FOR": "Aucun résultat pour",
+    "HINT": "Essayez un autre terme ou parcourez par catégorie.",
+    "PROMPT": "Commencez à écrire pour chercher dans les archives."
+  },
+  "FOOTER": {
+    "TAGLINE": "© 2026 THE CHRONICLER. PRÉCISION ARCHITECTURALE EN JOURNALISME.",
+    "SECTIONS": "Sections",
+    "COMPANY": "Entreprise",
+    "ARCHIVES": "Archives",
+    "ABOUT": "À propos",
+    "CONTACT": "Contact",
+    "PRIVACY": "Confidentialité",
+    "TERMS": "Conditions"
+  },
+  "CAT": {
+    "INTERNATIONAL_DESK": "Le Bureau International",
+    "LATEST": "Récents"
+  },
+  "LANG": {
+    "EN": "EN",
+    "FR": "FR",
+    "AR": "AR"
+  },
+  "PAGINATION": {
+    "PREV": "← Préc.",
+    "NEXT": "Suiv. →",
+    "OF": "sur"
+  }
+}

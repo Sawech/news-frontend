@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 import {
   AdminArticleListResponse,
   AdminArticleDetail,
@@ -10,6 +10,7 @@ import {
   AdminCategory,
   AdminTag,
   AdminTicker,
+  AdminOpinion,
 } from '../models/admin.model';
 
 interface AdminCategoryWithCount extends AdminCategory {
@@ -24,8 +25,12 @@ export class AdminApiService {
 
   private opts = { withCredentials: true };
 
-  getAdminTickers(): Observable<{ data: AdminTicker[] }> {
-    return this.http.get<{ data: AdminTicker[] }>(`${this.adminBase}/tickers`, this.opts);
+  getAdminTickers(locale: string): Observable<{ data: AdminTicker[] }> {
+    const params = new HttpParams().set('locale', locale);
+    return this.http.get<{ data: AdminTicker[] }>(`${this.adminBase}/tickers`, {
+      ...this.opts,
+      params,
+    });
   }
 
   getTicker(id: string): Observable<{ data: AdminTicker }> {
@@ -105,6 +110,22 @@ export class AdminApiService {
     return this.http.delete<{ message: string }>(`${this.adminBase}/authors/${id}`, this.opts);
   }
 
+  getOpinions(): Observable<{ data: AdminOpinion[] }> {
+    return this.http.get<{ data: AdminOpinion[] }>(`${this.adminBase}/opinions`, this.opts);
+  }
+
+  updateOpinion(id: number, payload: Partial<AdminOpinion>): Observable<{ data: AdminOpinion }> {
+    return this.http.put<{ data: AdminOpinion }>(
+      `${this.adminBase}/opinions/${id}`,
+      payload,
+      this.opts,
+    );
+  }
+
+  // deleteOpinion(id: number): Observable<{ message: string }> {
+  //   return this.http.delete<{ message: string }>(`${this.adminBase}/opinions/${id}`, this.opts);
+  // }
+
   getAdminCategories(): Observable<{ data: AdminCategoryWithCount[] }> {
     return this.http.get<{ data: AdminCategoryWithCount[] }>(
       `${this.adminBase}/categories`,
@@ -130,5 +151,13 @@ export class AdminApiService {
 
   getTags(): Observable<{ data: AdminTag[] }> {
     return this.http.get<{ data: AdminTag[] }>(`${this.publicBase}/tags`, this.opts);
+  }
+
+  createTag(payload: Omit<AdminTag, 'id'>): Observable<{ data: AdminTag }> {
+    return this.http.post<{ data: AdminTag }>(`${this.adminBase}/tags`, payload, this.opts);
+  }
+
+  deleteTag(id: string): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(`${this.adminBase}/tags/${id}`, this.opts);
   }
 }

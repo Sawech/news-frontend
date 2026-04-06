@@ -1,0 +1,248 @@
+/* =============================================================
+   ARCHIVE PAGE — archive.css
+   All styles scoped to this page.
+   Global tokens (--c-*, --font-*, --sp-*) & utilities
+   (label-sm, label-md, skeleton) come from styles.css.
+   ============================================================= */
+
+/* ─── Page wrapper ─────────────────────────────────────────── */
+.archive-page {
+  max-width: 64rem;          /* ~1024px, matches stitch's max-w-5xl */
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-8) var(--sp-20);
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+.archive-header {
+  margin-bottom: var(--sp-16);
+}
+
+.archive-header__eyebrow {
+  display: block;
+  color: var(--c-primary);
+  margin-bottom: var(--sp-2);
+}
+
+.archive-header__year {
+  font-family: var(--font-headline);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--c-on-surface);
+  margin-top: var(--sp-2);
+}
+
+.archive-header__desc {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--c-on-surface-variant);
+  margin-top: var(--sp-6);
+  max-width: 40rem;
+  line-height: 1.7;
+}
+
+/* ─── Article list ──────────────────────────────────────────── */
+.archive-list {
+  border-top: 1px solid rgba(228, 190, 186, 0.3);
+}
+
+/* ─── Entry row ─────────────────────────────────────────────── */
+.archive-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding: var(--sp-10) var(--sp-4);
+  margin: 0 calc(-1 * var(--sp-4));   /* bleed into padding for hover bg */
+  border-top: 1px solid rgba(228, 190, 186, 0.3);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.archive-entry--first {
+  border-top: none;
+}
+
+.archive-entry:hover {
+  background: var(--c-surface-low);
+}
+
+.archive-entry--skeleton {
+  cursor: default;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .archive-entry {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Meta column (category + date) */
+.archive-entry__meta {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .archive-entry__meta {
+    width: 12rem;
+  }
+}
+
+.archive-entry__category {
+  display: block;
+  color: var(--c-primary);
+  margin-bottom: var(--sp-1);
+}
+
+.archive-entry__date {
+  font-family: var(--font-headline);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(91, 64, 61, 0.7);   /* --c-on-surface-variant at 70% */
+}
+
+/* Body column (title + excerpt) */
+.archive-entry__body {
+  flex: 1;
+}
+
+.archive-entry__title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--c-on-surface);
+  transition: color 0.2s ease;
+}
+
+.archive-entry:hover .archive-entry__title {
+  color: var(--c-primary);
+}
+
+.archive-entry__excerpt {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--c-on-surface-variant);
+  margin-top: var(--sp-3);
+  line-height: 1.7;
+}
+
+/* ─── Empty state ───────────────────────────────────────────── */
+.archive-empty {
+  padding: var(--sp-20) 0;
+  text-align: center;
+  color: var(--c-on-surface-variant);
+}
+
+/* ─── Pagination ────────────────────────────────────────────── */
+.archive-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--sp-20);
+  padding-top: var(--sp-8);
+  border-top: 4px solid var(--c-on-surface);
+}
+
+.archive-pagination__nav {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--c-on-surface);
+  transition: color 0.2s ease;
+}
+
+.archive-pagination__nav:hover:not(:disabled) {
+  color: var(--c-primary);
+}
+
+.archive-pagination__nav:disabled {
+  color: rgba(28, 27, 27, 0.35);
+  cursor: not-allowed;
+}
+
+.archive-pagination__nav .material-symbols-outlined {
+  font-size: 1rem !important;
+}
+
+.archive-pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.archive-pagination__num {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 700;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--c-on-surface);
+  transition: color 0.2s ease;
+  padding: 0;
+}
+
+.archive-pagination__num:hover {
+  color: var(--c-primary);
+}
+
+.archive-pagination__num--active {
+  color: var(--c-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.archive-pagination__ellipsis {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: rgba(28, 27, 27, 0.3);
+}
+
+/* ─── Skeleton loader ───────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--c-surface-container) 25%,
+    var(--c-surface-high) 50%,
+    var(--c-surface-container) 75%
+  );
+  background-size: 200% 100%;
+  animation: arch-shimmer 1.5s infinite;
+}
+
+@keyframes arch-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Responsive tweaks ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  .archive-pagination {
+    flex-direction: column;
+    gap: var(--sp-6);
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .archive-pagination__pages {
+    justify-content: center;
+  }
+}

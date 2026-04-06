@@ -54,19 +54,19 @@ export class SeoService {
     this.injectJsonLd({
       '@context': 'https://schema.org',
       '@type': 'NewsArticle',
-      'headline': article.title,
-      'description': article.excerpt,
-      'image': article.imageUrl,
-      'author': {
+      headline: article.title,
+      description: article.excerpt,
+      image: article.imageUrl,
+      author: {
         '@type': 'Person',
-        'name': article.author.name,
+        name: article.author.name,
       },
-      'publisher': {
+      publisher: {
         '@type': 'Organization',
-        'name': this.siteName,
+        name: this.siteName,
       },
-      'datePublished': article.publishedAt,
-      'mainEntityOfPage': `${this.siteUrl}/article/${article.slug}`,
+      // 'datePublished': article.publishedAt,
+      mainEntityOfPage: `${this.siteUrl}/article/${article.slug}`,
     });
   }
 

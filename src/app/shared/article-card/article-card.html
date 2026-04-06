@@ -1,0 +1,25 @@
+<article
+  class="article-card"
+  [class.article-card--list]="listView"
+  [routerLink]="['/article', article.slug]"
+>
+  <div class="article-card__thumb" [style.aspect-ratio]="aspectRatio">
+    @if (article.imageUrl) {
+      <img [src]="article.imageUrl" [alt]="article.title" loading="lazy" />
+    } @else {
+      <div class="article-card__placeholder"></div>
+    }
+  </div>
+  <div class="article-card__body">
+    <span class="label-sm article-card__category" [style.color]="'var(--c-primary)'">
+      {{ article.category.name }}
+    </span>
+    <h3 class="article-card__title">{{ article.title }}</h3>
+    @if (showExcerpt) {
+      <p class="article-card__excerpt body-lg">{{ article.excerpt }}</p>
+    }
+    @if (article.readTime) {
+      <span class="article-card__meta">{{ article.readTime }} {{ 'ARTICLE.MIN_READ' | translate }}</span>
+    }
+  </div>
+</article>

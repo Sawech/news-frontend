@@ -1,0 +1,73 @@
+{
+  "NAV": {
+    "BREAKING": "عاجل",
+    "SEARCH_PLACEHOLDER": "ابحث عن مقالات، مواضيع، كتّاب…",
+    "SEARCH_BTN": "بحث"
+  },
+  "HERO": {
+    "LABEL": "المكتب الدولي",
+    "TITLE": "أخبار العالم",
+    "SUBTITLE": "تقارير من كل أنحاء العالم. من التحولات الجيوسياسية إلى القصص المحلية التي تتردد أصداؤها عبر الحدود.",
+    "BADGE": "حصري",
+    "TRENDING": "الأكثر تداولاً",
+    "OPINIONS": "آراء"
+  },
+  "FILTERS": {
+    "LATEST": "الأحدث",
+    "FEATURED": "مميز",
+    "TRENDING": "رائج",
+    "PAST_WEEK": "الأسبوع الماضي",
+    "PAST_MONTH": "الشهر الماضي"
+  },
+  "SECTION": {
+    "LATEST_DISPATCHES": "آخر التقارير",
+    "MORNING_BRIEF": "نشرة الصباح",
+    "OPINIONS": "آراء",
+    "EXPLORE": "استكشاف الفئة"
+  },
+  "ARTICLE": {
+    "MIN_READ": "د قراءة",
+    "MIN": "د",
+    "MIN_READ_FULL": "دقيقة قراءة",
+    "BY": "بقلم"
+  },
+  "EMPTY": {
+    "NO_RESULTS": "لا نتائج",
+    "NO_DISPATCHES": "لا توجد تقارير",
+    "TRY_FILTER": "جرّب فلتراً آخر أو تحقق لاحقاً.",
+    "NO_CATEGORY": "لا توجد مقالات في هذه الفئة بعد."
+  },
+  "SEARCH": {
+    "TITLE": "بحث",
+    "SEARCHING": "جارٍ البحث…",
+    "RESULTS": "نتائج لـ",
+    "RESULT": "نتيجة لـ",
+    "NO_RESULTS_FOR": "لا نتائج لـ",
+    "HINT": "جرب مصطلحاً مختلفاً أو تصفح حسب الفئة.",
+    "PROMPT": "ابدأ الكتابة للبحث في الأرشيف."
+  },
+  "FOOTER": {
+    "TAGLINE": "© 2026 ذا كرونيكلر. دقة معمارية في الصحافة.",
+    "SECTIONS": "الأقسام",
+    "COMPANY": "الشركة",
+    "ARCHIVES": "الأرشيف",
+    "ABOUT": "من نحن",
+    "CONTACT": "اتصل بنا",
+    "PRIVACY": "الخصوصية",
+    "TERMS": "الشروط"
+  },
+  "CAT": {
+    "INTERNATIONAL_DESK": "المكتب الدولي",
+    "LATEST": "الأحدث"
+  },
+  "LANG": {
+    "EN": "EN",
+    "FR": "FR",
+    "AR": "ع"
+  },
+  "PAGINATION": {
+    "PREV": "→ السابق",
+    "NEXT": "التالي ←",
+    "OF": "من"
+  }
+}

@@ -8,6 +8,7 @@ export interface AdminUser {
 export interface AdminTicker {
   id: string;
   content: string;
+  locale: string;
 }
 
 export interface AdminArticleRow {
@@ -20,17 +21,18 @@ export interface AdminArticleRow {
   featured: boolean;
   trending: boolean;
   readTime: number;
-  publishedAt?: string;
+  // publishedAt?: string;
   createdAt: string;
   author: { name: string };
   category: { name: string };
-  tags: Array<{ tag: { name: string; slug: string } }>;
+  tags: Array<{ tag: { name: string; locale: string } }>;
 }
 
 export interface AdminArticleDetail extends AdminArticleRow {
   body: string;
   authorId: string;
   categoryId: string;
+  locale: string;
 }
 
 export interface AdminArticlePayload {
@@ -46,12 +48,13 @@ export interface AdminArticlePayload {
   trending?: boolean;
   readTime?: number;
   status?: 'DRAFT' | 'PUBLISHED';
+  locale: string;
 }
 
 export interface AdminTag {
   id: string;
   name: string;
-  slug: string;
+  locale: string;
 }
 
 export interface AdminAuthor {
@@ -62,11 +65,21 @@ export interface AdminAuthor {
   avatarUrl?: string;
 }
 
+export interface AdminOpinion {
+  id: number;
+  pubName?: string;
+  content?: string;
+  subject?: string;
+  linkUrl?: string;
+  locale?: string;
+}
+
 export interface AdminCategory {
   id: string;
   name: string;
   slug: string;
   description?: string;
+  locale?: string;
 }
 
 export interface AdminListMeta {

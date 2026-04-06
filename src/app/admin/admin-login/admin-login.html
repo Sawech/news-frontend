@@ -1,0 +1,86 @@
+<div class="login-page" dir="ltr">
+  <!-- Top header -->
+  <header class="site-header">
+    <span class="site-title">THE CHRONICLER</span>
+  </header>
+
+  <!-- Main content -->
+  <main class="login-main">
+    <div class="login-card">
+      <!-- Brand -->
+      <div class="brand">
+        <span class="brand-icon">★</span>
+        <p class="brand-eyebrow">Internal Access Only</p>
+        <h1 class="brand-name">Admin Sign In</h1>
+        <p class="brand-sub">Editorial CMS</p>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" class="login-form">
+        <!-- Email -->
+        <div class="field-group">
+          <label for="email" class="field-label">Admin Email</label>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            class="field-input"
+            placeholder="editorial.admin@chronicler.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="field-group">
+          <div class="field-label-row">
+            <label for="password" class="field-label">Security Key</label>
+          </div>
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            class="field-input"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+
+        @if (error()) {
+          <div class="error-banner" role="alert">{{ error() }}</div>
+        }
+
+        <button type="submit" id="login-submit" class="login-btn" [disabled]="loading()">
+          @if (loading()) {
+            <span class="btn-spinner"></span> Authorizing…
+          } @else {
+            Authorize Access
+          }
+        </button>
+      </form>
+
+      <p class="security-notice">
+        <em
+          >Unauthorized access to this portal is strictly prohibited and subject to monitoring.</em
+        >
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span class="footer-brand">THE CHRONICLER</span>
+    <div class="footer-right">
+      <p class="footer-copy">
+        © 2026 The Chronicler. All Rights Reserved. Architectural Integrity in Journalism.
+      </p>
+      <nav class="footer-nav">
+        <a href="#" class="footer-link" (click)="$event.preventDefault()">System Status</a>
+        <a href="#" class="footer-link" (click)="$event.preventDefault()">Security Policy</a>
+        <a href="#" class="footer-link" (click)="$event.preventDefault()">IT Support</a>
+      </nav>
+    </div>
+  </footer>
+</div>

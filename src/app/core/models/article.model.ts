@@ -14,6 +14,15 @@ export interface Category {
   _count?: { articles: number };
 }
 
+export interface Opinion {
+  id?: number;
+  pubName?: string;
+  content?: string;
+  subject?: string;
+  linkUrl?: string;
+  locale?: string;
+}
+
 export interface Tag {
   name: string;
   slug: string;
@@ -30,8 +39,9 @@ export interface Article {
   featured?: boolean;
   trending?: boolean;
   readTime?: number;
-  publishedAt?: string;
+  // publishedAt?: string;
   createdAt?: string;
+  updatedAt?: string;
   author: Author;
   category: Category;
   tags?: Array<{ tag: Tag }>;
@@ -65,4 +75,14 @@ export interface SearchResponse {
 
 export interface CategoryListResponse {
   data: Category[];
+}
+
+export interface OpinionListResponse {
+  data: Opinion[];
+}
+
+export interface Ticker {
+  id: string;
+  content: string;
+  locale: string;
 }

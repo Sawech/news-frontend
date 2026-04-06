@@ -1,0 +1,44 @@
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.lang-switcher__btn {
+  font-family: var(--font-headline);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  color: var(--c-on-surface-variant);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.lang-switcher__btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--c-primary);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.lang-switcher__btn:hover {
+  color: var(--c-on-surface);
+}
+
+.lang-switcher__btn--active {
+  color: var(--c-primary);
+}
+
+.lang-switcher__btn--active::after {
+  transform: scaleX(1);
+}

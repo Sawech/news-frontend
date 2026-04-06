@@ -1,0 +1,73 @@
+<main class="container search-page">
+  <!-- Search header -->
+  <div class="search-header">
+    <h1 class="search-title display-lg">{{ 'SEARCH.TITLE' | translate }}</h1>
+    <div class="search-field-wrap">
+      <input
+        class="search-field"
+        type="text"
+        [placeholder]="'NAV.SEARCH_PLACEHOLDER' | translate"
+        [(ngModel)]="query"
+        (ngModelChange)="onQueryChange($event)"
+        autocomplete="off"
+      />
+      <span class="material-symbols-outlined search-icon">search</span>
+    </div>
+    @if (query) {
+      <p class="search-summary label-md">
+        @if (loading()) {
+          {{ 'SEARCH.SEARCHING' | translate }}
+        } @else {
+          {{ total() }}
+          {{
+            total() !== 1 ? ('SEARCH.RESULTS' | translate) : ('SEARCH.RESULT' | translate)
+          }}
+          &ldquo;{{ query }}&rdquo;
+        }
+      </p>
+    }
+  </div>
+
+  <!-- Results -->
+  @if (results().length) {
+    <div class="search-results">
+      @for (article of results(); track article.slug) {
+        <div class="search-result" [routerLink]="['/article', article.slug]">
+          @if (article.imageUrl) {
+            <div class="search-result__thumb">
+              <img [src]="article.imageUrl" [alt]="article.title" />
+            </div>
+          }
+          <div class="search-result__body">
+            <span class="label-sm search-result__cat">{{ article.category.name }}</span>
+            <h2 class="search-result__title">{{ article.title }}</h2>
+            <p class="search-result__excerpt">{{ article.excerpt }}</p>
+            <span class="label-sm search-result__meta"
+              >{{ article.readTime }} {{ 'ARTICLE.MIN_READ' | translate }} ·
+              {{ article.updatedAt | date: 'MMM d, yyyy' }}</span
+            >
+          </div>
+        </div>
+      }
+    </div>
+  } @else if (query && !loading()) {
+    <div class="search-empty">
+      <span class="material-symbols-outlined search-empty__icon">search_off</span>
+      <h2 class="headline-md">
+        {{ 'SEARCH.NO_RESULTS_FOR' | translate }} &ldquo;{{ query }}&rdquo;
+      </h2>
+      <p class="search-empty__hint">{{ 'SEARCH.HINT' | translate }}</p>
+      <div class="search-empty__cats">
+        @for (cat of quickCategories; track cat) {
+          <a [routerLink]="['/category', cat.toLowerCase()]" class="tag-chip">{{ cat }}</a>
+        }
+      </div>
+    </div>
+  } @else if (!query) {
+    <div class="search-prompt">
+      <p class="title-lg" style="color: var(--c-on-surface-variant)">
+        {{ 'SEARCH.PROMPT' | translate }}
+      </p>
+    </div>
+  }
+</main>

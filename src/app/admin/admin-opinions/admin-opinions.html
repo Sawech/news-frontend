@@ -1,0 +1,136 @@
+<div class="mgmt-page">
+  <header class="mgmt-header">
+    <div>
+      <h1 class="mgmt-title">Opinions</h1>
+      <p class="mgmt-sub">{{ opinions().length }} total</p>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="state-msg">
+      <div class="spinner"></div>
+      <span>Loading…</span>
+    </div>
+  } @else if (error()) {
+    <div class="state-msg error">{{ error() }}</div>
+  } @else {
+    <div class="opn-table-wrap">
+      <table class="opn-table">
+        <colgroup>
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Opinion</th>
+            <th>Subject</th>
+            <th>Language</th>
+            <th>Link</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (opn of opinions(); track opn.id) {
+            <tr class="opn-row" [id]="'opn-' + opn.id">
+              <td class="col-name">{{ opn.pubName || '—' }}</td>
+              <td class="col-text">
+                {{ opn.content || '—' }}
+              </td>
+              <td class="col-subject">{{ opn.subject || '—' }}</td>
+              <td class="col-link">
+                {{ opn.linkUrl || '—' }}
+              </td>
+
+              <td class="col-lang">
+                <span class="lang-badge lang-badge--{{ opn.locale ?? 'en' }}">
+                  {{ (opn.locale ?? 'en').toUpperCase() }}
+                </span>
+              </td>
+              <td class="col-actions">
+                <a class="action-btn edit-btn" [id]="'edit-' + opn.id" (click)="openModal(opn)"
+                  >Edit</a
+                >
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+@if (showModal()) {
+  <div class="modal-backdrop" (click)="closeModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <h3 class="modal-title">Edit Opinion</h3>
+      @if (modalError()) {
+        <div class="modal-error">{{ modalError() }}</div>
+      }
+      <div class="field-group">
+        <label class="field-label">Publisher Name</label>
+        <input
+          type="text"
+          class="field-input"
+          [(ngModel)]="form.pubName"
+          placeholder="Name..."
+          id="opn-name-input"
+        />
+      </div>
+      <div class="field-group">
+        <label class="field-label">Content</label>
+        <textarea
+          class="field-input"
+          [(ngModel)]="form.content"
+          placeholder="Content…"
+          rows="3"
+          id="opn-desc-input"
+        ></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Subject</label>
+        <input
+          type="text"
+          class="field-input mono"
+          [(ngModel)]="form.subject"
+          placeholder="Subject of this opinion…"
+          id="opn-text-input"
+        />
+      </div>
+      <div class="field-group">
+        <label class="field-label">Link</label>
+        <input
+          type="url"
+          class="field-input"
+          [(ngModel)]="form.linkUrl"
+          placeholder="https://example.com/opinion"
+          id="field-link-input"
+        />
+      </div>
+      <div class="modal-actions">
+        <button class="modal-cancel" (click)="ClearOpinion()">
+          @if (deleting()) {
+            Clearing…
+          } @else {
+            Clear Opinion
+          }
+        </button>
+        <button
+          class="modal-confirm"
+          id="save-opinion-btn"
+          [disabled]="saving()"
+          (click)="saveOpinion()"
+        >
+          @if (saving()) {
+            Saving…
+          } @else {
+            Save Opinion
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+}

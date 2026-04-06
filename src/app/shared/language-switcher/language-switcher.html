@@ -1,0 +1,14 @@
+<div class="lang-switcher" role="group" aria-label="Language selector">
+  @for (l of langs; track l.code) {
+    <button
+      class="lang-switcher__btn"
+      [class.lang-switcher__btn--active]="lang.activeLang() === l.code"
+      (click)="select(l.code)"
+      [routerLink]="lang.activeLang() === l.code ? null : ['/home']"
+      [attr.aria-pressed]="lang.activeLang() === l.code"
+      [id]="'lang-btn-' + l.code"
+    >
+      {{ l.key | translate }}
+    </button>
+  }
+</div>

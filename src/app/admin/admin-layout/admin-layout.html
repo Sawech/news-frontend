@@ -1,0 +1,203 @@
+<div class="admin-shell" dir="ltr">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">✦</span>
+      <span class="brand-label">The Chronicler</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="nav-section-label">Content</p>
+      <a
+        routerLink="/admin/dashboard"
+        routerLinkActive="nav-active"
+        class="nav-item"
+        id="nav-dashboard"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+        </svg>
+        Dashboard
+      </a>
+
+      <a
+        routerLink="/admin/articles/new"
+        routerLinkActive="nav-active"
+        class="nav-item"
+        id="nav-new-article"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+        New Article
+      </a>
+
+      <p class="nav-section-label" style="margin-top: 1rem">Manage</p>
+      <a
+        routerLink="/admin/authors"
+        routerLinkActive="nav-active"
+        class="nav-item"
+        id="nav-authors"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+        Authors
+      </a>
+
+      <a
+        routerLink="/admin/categories"
+        routerLinkActive="nav-active"
+        class="nav-item"
+        id="nav-categories"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+        </svg>
+        Categories
+      </a>
+
+      <a
+        routerLink="/admin/opinions"
+        routerLinkActive="nav-active"
+        class="nav-item"
+        id="nav-opinions"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M12,2A10,10,0,0,0,2,12a9.89,9.89,0,0,0,2.26,6.33l-2,2a1,1,0,0,0-.21,1.09A1,1,0,0,0,3,22h9A10,10,0,0,0,12,2Zm0,18H5.41l.93-.93a1,1,0,0,0,0-1.41A8,8,0,1,1,12,20Zm2-9H13V10a1,1,0,0,0-2,0v1H10a1,1,0,0,0,0,2h1v1a1,1,0,0,0,2,0V13h1a1,1,0,0,0,0-2Z"
+            ></path>
+          </g>
+        </svg>
+        Opinions
+      </a>
+
+      <a
+        routerLink="/admin/tickers"
+        routerLinkActive="nav-active"
+        class="nav-item"
+        id="nav-tickers"
+      >
+        <svg width="16" height="16" viewBox="0 0 48 48" fill="currentColor">
+          <polygon
+            points="8,9 10,9 10,12 10,16 10,39 8,39 8,42 16,42 16,39 14,39 14,16 14,12 14,9 16,9 16,6 8,6 "
+          ></polygon>
+          <polygon points="4,16 7.021,16 7.021,12 0,12 0,36 7.042,36 7.042,32 4,32 "></polygon>
+          <polygon
+            points="16.979,12 16.979,16 44,16 44,32 16.958,32 16.958,36 48,36 48,12 "
+          ></polygon>
+        </svg>
+        Tickers
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a
+        routerLink="/admin/settings"
+        routerLinkActive="nav-active"
+        class="nav-item settings-link"
+        id="nav-settings"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+          />
+        </svg>
+        Settings
+      </a>
+      <div class="user-info">
+        <div class="user-avatar">{{ userInitial() }}</div>
+        <div class="user-meta">
+          <span class="user-name">{{ userName() }}</span>
+          <span class="user-role">{{ userRole() }}</span>
+        </div>
+      </div>
+      <button class="logout-btn" id="logout-btn" (click)="logout()">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+    <router-outlet />
+  </main>
+</div>

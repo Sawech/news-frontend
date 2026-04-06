@@ -1,0 +1,112 @@
+<main class="archive-page">
+  <!-- ═══════════════════════════════════════════
+       ARCHIVE HEADER
+  ═══════════════════════════════════════════ -->
+  <div class="archive-header">
+    <span class="archive-header__eyebrow label-sm">Archive</span>
+    <h1 class="archive-header__year">{{ year() }}</h1>
+    <p class="archive-header__desc">
+      A definitive record of the stories that shaped the global landscape, from seismic political
+      shifts to the accelerating frontiers of technology.
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       ARTICLE LIST
+  ═══════════════════════════════════════════ -->
+  <div class="archive-list">
+    <!-- Skeleton loaders -->
+    @if (loading()) {
+      @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+        <div class="archive-entry archive-entry--skeleton">
+          <div class="archive-entry__meta">
+            <div
+              class="skeleton"
+              style="height: 0.75rem; width: 5rem; margin-bottom: 0.375rem"
+            ></div>
+            <div class="skeleton" style="height: 0.625rem; width: 7rem"></div>
+          </div>
+          <div class="archive-entry__body">
+            <div class="skeleton" style="height: 1.75rem; width: 80%; margin-bottom: 0.75rem"></div>
+            <div class="skeleton" style="height: 1rem; width: 95%"></div>
+          </div>
+        </div>
+      }
+    }
+
+    <!-- Articles -->
+    @if (!loading()) {
+      @for (article of articles(); track article.slug; let first = $first) {
+        <article
+          class="archive-entry"
+          [class.archive-entry--first]="first"
+          [routerLink]="['/article', article.slug]"
+        >
+          <div class="archive-entry__meta">
+            <span class="archive-entry__category label-sm">{{ article.category.name }}</span>
+            <time class="archive-entry__date">
+              {{ article.updatedAt ?? article.createdAt | date: 'MMM dd, yyyy' }}
+            </time>
+          </div>
+          <div class="archive-entry__body">
+            <h2 class="archive-entry__title">{{ article.title }}</h2>
+            <p class="archive-entry__excerpt">{{ article.excerpt }}</p>
+          </div>
+        </article>
+      }
+
+      @if (articles().length === 0) {
+        <div class="archive-empty">
+          <p class="label-md">No articles found for {{ year() }}.</p>
+        </div>
+      }
+    }
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PAGINATION
+  ═══════════════════════════════════════════ -->
+  @if (totalPages() > 1) {
+    <nav class="archive-pagination">
+      <!-- Prev -->
+      <div>
+        <button
+          class="archive-pagination__nav"
+          [disabled]="currentPage() <= 1"
+          (click)="loadPage(currentPage() - 1)"
+        >
+          <span class="material-symbols-outlined">arrow_back</span>
+          Previous
+        </button>
+      </div>
+
+      <!-- Page numbers -->
+      <div class="archive-pagination__pages">
+        @for (page of pageNumbers(); track $index) {
+          @if (page === '...') {
+            <span class="archive-pagination__ellipsis">...</span>
+          } @else {
+            <button
+              class="archive-pagination__num"
+              [class.archive-pagination__num--active]="currentPage() === page"
+              (click)="loadPage(+page)"
+            >
+              {{ page }}
+            </button>
+          }
+        }
+      </div>
+
+      <!-- Next -->
+      <div>
+        <button
+          class="archive-pagination__nav"
+          [disabled]="currentPage() >= totalPages()"
+          (click)="loadPage(currentPage() + 1)"
+        >
+          Next <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </nav>
+  }
+</main>

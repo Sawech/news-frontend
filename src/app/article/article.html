@@ -1,0 +1,109 @@
+<div class="reading-progress" [style.width]="readProgress() + '%'"></div>
+
+<main>
+  @if (article(); as a) {
+    <article class="container article-page">
+      <!-- Header -->
+      <header class="article-header">
+        <span class="tag-badge article-cat">{{ a.category.name }}</span>
+        <h1 class="article-title">{{ a.title }}</h1>
+        <p class="article-deck">{{ a.excerpt }}</p>
+
+        <!-- Author row -->
+        <div class="author-row">
+          <div class="author-info">
+            <div class="author-avatar-wrap">
+              @if (a.author.avatarUrl) {
+                <img
+                  class="author-avatar"
+                  [src]="a.author.avatarUrl"
+                  [alt]="a.author.name"
+                  (error)="onAvatarError($event)"
+                />
+              }
+              <span class="author-avatar-fallback" [style.background]="authorColor(a.author.name)">
+                {{ a.author.name.charAt(0).toUpperCase() }}
+              </span>
+            </div>
+            <div>
+              <p class="label-md">By {{ a.author.name }}</p>
+              <p class="author-date">
+                {{ a.category.name }} · {{ a.updatedAt | date: 'MMM d, yyyy' }}
+              </p>
+            </div>
+          </div>
+          <div class="author-actions">
+            @if (a.readTime) {
+              <div class="read-time">
+                <span class="label-sm">Read Time</span>
+                <span class="label-md">{{ a.readTime }} MINS</span>
+              </div>
+            }
+            <button class="icon-action">
+              <span class="material-symbols-outlined">share</span>
+            </button>
+            <!-- <button class="icon-action">
+                  <span class="material-symbols-outlined">bookmark</span>
+                </button> -->
+          </div>
+        </div>
+      </header>
+
+      <!-- Feature image -->
+      @if (a.imageUrl) {
+        <figure class="article-figure">
+          <img class="article-hero-img" [src]="a.imageUrl" [alt]="a.title" />
+          <figcaption class="article-caption">{{ a.title }} · The Chronicler</figcaption>
+        </figure>
+      }
+
+      <div class="article-layout">
+        <!-- Sticky social sidebar -->
+        <aside class="article-sidebar">
+          <button class="sidebar-btn">
+            <span class="material-symbols-outlined">share</span>
+          </button>
+          <button class="sidebar-btn">
+            <span class="material-symbols-outlined">bookmark</span>
+          </button>
+          <button class="sidebar-btn">
+            <span class="material-symbols-outlined">alternate_email</span>
+          </button>
+        </aside>
+
+        <!-- Article body (rendered as HTML) -->
+        <div class="article-body" [innerHTML]="safeBody()"></div>
+      </div>
+
+      <!-- Tags -->
+      @if (a.tags?.length) {
+        <div class="tags-row">
+          @for (t of a.tags; track t.tag.slug) {
+            <a [routerLink]="['/search']" [queryParams]="{ q: t.tag.name }" class="tag-chip">{{
+              t.tag.name
+            }}</a>
+          }
+        </div>
+      }
+    </article>
+
+    <!-- Related articles -->
+    @if (related().length) {
+      <section class="container related">
+        <div class="section-header">
+          <h2 class="headline-md">Read More in {{ article()!.category.name }}</h2>
+          <a [routerLink]="['/category', article()!.category.slug]" class="btn-text">View All →</a>
+        </div>
+        <div class="related__grid">
+          @for (r of related(); track r.slug) {
+            <app-article-card [article]="r" [aspectRatio]="'4/3'" [showExcerpt]="false" />
+          }
+        </div>
+      </section>
+    }
+  } @else {
+    <div class="loading-state container">
+      <div class="loading-box"></div>
+    </div>
+  }
+</main>
