@@ -21,7 +21,7 @@ export class AdminAuthorsComponent implements OnInit {
   deleteTarget = signal<AdminAuthor | null>(null);
   deleting = signal(false);
 
-  form = { name: '', slug: '', bio: '', avatarUrl: '' };
+  form = { name: '', bio: '', avatarUrl: '' };
 
   ngOnInit() {
     this.loadAuthors();
@@ -42,7 +42,7 @@ export class AdminAuthorsComponent implements OnInit {
   }
 
   openModal() {
-    this.form = { name: '', slug: '', bio: '', avatarUrl: '' };
+    this.form = { name: '', bio: '', avatarUrl: '' };
     this.modalError.set('');
     this.showModal.set(true);
   }
@@ -51,24 +51,10 @@ export class AdminAuthorsComponent implements OnInit {
     this.showModal.set(false);
   }
 
-  onNameChange(name: string) {
-    this.form.slug = name
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .slice(0, 100);
-  }
-
   saveAuthor() {
     this.modalError.set('');
     if (!this.form.name.trim()) {
       this.modalError.set('Name is required.');
-      return;
-    }
-    if (!this.form.slug.trim()) {
-      this.modalError.set('Slug is required.');
       return;
     }
 
@@ -76,7 +62,6 @@ export class AdminAuthorsComponent implements OnInit {
     this.api
       .createAuthor({
         name: this.form.name,
-        slug: this.form.slug,
         bio: this.form.bio || undefined,
         avatarUrl: this.form.avatarUrl || undefined,
       })

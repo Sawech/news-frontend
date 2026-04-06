@@ -57,6 +57,7 @@
               >
                 <p class="opinion__quote">&ldquo;{{ op.content || '—' }}&rdquo;</p>
                 <span class="label-sm opinion__author">— {{ op.pubName || '—' }}</span>
+                <p class="opinion__subject">{{ op.subject || '—' }}</p>
               </a>
               @if (!$last) {
                 <div class="opinion__divider"></div>

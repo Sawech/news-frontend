@@ -187,6 +187,16 @@
   color: var(--c-on-surface-variant);
   display: block;
 }
+.opinion__subject {
+  margin-top: 0.85rem;
+  border-left: 2px solid rgba(228, 190, 186, 0.4);
+  border-radius: 0;
+  padding-left: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--c-on-surface-variant);
+  line-height: 1.55;
+}
 .opinion__divider {
   height: 1px;
   background: rgba(228, 190, 186, 0.3);
@@ -497,36 +507,35 @@
 }
 
 /* ── RTL OVERRIDES ────────────────────────────────────────── */
-:host-context([dir="rtl"]) .hero__badge {
+:host-context([dir='rtl']) .hero__badge {
   left: auto;
   right: 0;
 }
 
-:host-context([dir="rtl"]) .brief {
+:host-context([dir='rtl']) .brief {
   border-left: none;
   border-right: 4px solid var(--c-primary);
   padding-left: 0;
   padding-right: 1.5rem;
 }
 
-:host-context([dir="rtl"]) .filters__view {
+:host-context([dir='rtl']) .filters__view {
   margin-left: 0;
   margin-right: 2rem;
 }
 
-:host-context([dir="rtl"]) .filters__tabs {
+:host-context([dir='rtl']) .filters__tabs {
   flex-direction: row-reverse;
 }
 
-:host-context([dir="rtl"]) .focus__grid {
+:host-context([dir='rtl']) .focus__grid {
   direction: rtl;
 }
 
-:host-context([dir="rtl"]) .focus__card-foot {
+:host-context([dir='rtl']) .focus__card-foot {
   flex-direction: row-reverse;
 }
 
-:host-context([dir="rtl"]) .hero__text {
+:host-context([dir='rtl']) .hero__text {
   text-align: right;
 }
-

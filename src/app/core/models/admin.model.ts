@@ -60,7 +60,6 @@ export interface AdminTag {
 export interface AdminAuthor {
   id: string;
   name: string;
-  slug: string;
   bio?: string;
   avatarUrl?: string;
 }

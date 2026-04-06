@@ -37,7 +37,6 @@
           <div class="author-avatar">{{ author.name[0].toUpperCase() }}</div>
           <div class="author-info">
             <span class="author-name">{{ author.name }}</span>
-            <span class="author-slug">/{{ author.slug }}</span>
             @if (author.bio) {
               <p class="author-bio">{{ author.bio }}</p>
             }
@@ -84,19 +83,8 @@
           type="text"
           class="field-input"
           [(ngModel)]="form.name"
-          (ngModelChange)="onNameChange($event)"
           placeholder="Jane Doe"
           id="author-name-input"
-        />
-      </div>
-      <div class="field-group">
-        <label class="field-label">Slug <span class="req">*</span></label>
-        <input
-          type="text"
-          class="field-input mono"
-          [(ngModel)]="form.slug"
-          placeholder="jane-doe"
-          id="author-slug-input"
         />
       </div>
       <div class="field-group">
