@@ -21,7 +21,6 @@
     </a>
   </header>
 
-  <!-- Toolbar: tabs + search -->
   <div class="toolbar">
     <div class="filter-tabs" role="tablist">
       @for (tab of filterTabs; track tab.value) {
@@ -146,7 +145,6 @@
       </table>
     </div>
 
-    <!-- Pagination -->
     @if (totalPages() > 1) {
       <div class="pagination">
         <button class="page-btn" [disabled]="page() <= 1" (click)="changePage(page() - 1)">
@@ -164,7 +162,6 @@
     }
   }
 
-  <!-- Delete confirm modal -->
   @if (deleteTarget()) {
     <div class="modal-backdrop" (click)="cancelDelete()">
       <div class="modal-card" (click)="$event.stopPropagation()">

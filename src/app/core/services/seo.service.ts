@@ -50,7 +50,6 @@ export class SeoService {
       canonicalUrl: `${this.siteUrl}/article/${article.slug}`,
     });
 
-    // JSON-LD structured data
     this.injectJsonLd({
       '@context': 'https://schema.org',
       '@type': 'NewsArticle',
@@ -81,7 +80,6 @@ export class SeoService {
   }
 
   private injectJsonLd(schema: object): void {
-    // Remove existing JSON-LD
     const existing = this.doc.querySelector('script[type="application/ld+json"]');
     if (existing) existing.remove();
 

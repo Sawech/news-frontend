@@ -57,13 +57,11 @@ export class App implements OnInit, AfterViewInit {
 
   @HostListener('window:resize')
   updateHeaderOffset() {
-    // Measure the combined height of the fixed ticker + navbar
     const ticker = document.querySelector('.ticker') as HTMLElement;
     const navbar = document.querySelector('.navbar') as HTMLElement;
     const tickerH = ticker?.offsetHeight ?? 0;
     const navbarH = navbar?.offsetHeight ?? 0;
 
-    // Also update the CSS variable used by navbar to sit below the ticker
     document.documentElement.style.setProperty('--ticker-height', `${tickerH}px`);
 
     this.headerOffset.set(tickerH + navbarH);

@@ -28,13 +28,8 @@ export class CategoryComponent implements OnInit {
   activeFilter = signal<string>('all');
   loading = signal(false);
 
-  /** First article → hero featured report */
   featuredArticle = computed(() => this.articles()[0] ?? null);
-
-  /** Articles 2–4 → sidebar dispatches panel */
   dispatchArticles = computed(() => this.articles().slice(1, 4));
-
-  /** Articles 5+ → latest dispatches grid */
   latestArticles = computed(() => this.articles().slice(4));
 
   filterTabs = [
@@ -83,7 +78,7 @@ export class CategoryComponent implements OnInit {
     const params: Record<string, unknown> = {
       category: categorySlug,
       page: this.currentPage(),
-      limit: 10, // 1 featured + 3 sidebar + 6 grid
+      limit: 10,
     };
     if (this.activeFilter() === 'featured') params['featured'] = true;
     if (this.activeFilter() === 'trending') params['trending'] = true;

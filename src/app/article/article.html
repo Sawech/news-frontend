@@ -3,13 +3,11 @@
 <main>
   @if (article(); as a) {
     <article class="container article-page">
-      <!-- Header -->
       <header class="article-header">
         <span class="tag-badge article-cat">{{ a.category.name }}</span>
         <h1 class="article-title">{{ a.title }}</h1>
         <p class="article-deck">{{ a.excerpt }}</p>
 
-        <!-- Author row -->
         <div class="author-row">
           <div class="author-info">
             <div class="author-avatar-wrap">
@@ -49,7 +47,6 @@
         </div>
       </header>
 
-      <!-- Feature image -->
       @if (a.imageUrl) {
         <figure class="article-figure">
           <img class="article-hero-img" [src]="a.imageUrl" [alt]="a.title" />
@@ -58,7 +55,6 @@
       }
 
       <div class="article-layout">
-        <!-- Sticky social sidebar -->
         <aside class="article-sidebar">
           <button class="sidebar-btn">
             <span class="material-symbols-outlined">share</span>
@@ -71,11 +67,9 @@
           </button>
         </aside>
 
-        <!-- Article body (rendered as HTML) -->
         <div class="article-body" [innerHTML]="safeBody()"></div>
       </div>
 
-      <!-- Tags -->
       @if (a.tags?.length) {
         <div class="tags-row">
           @for (t of a.tags; track t.tag.slug) {
@@ -87,7 +81,6 @@
       }
     </article>
 
-    <!-- Related articles -->
     @if (related().length) {
       <section class="container related">
         <div class="section-header">

@@ -31,7 +31,6 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.seo.updateMeta({ title: 'Search' });
 
-    // Debounced search
     this.querySubject.pipe(debounceTime(350), distinctUntilChanged()).subscribe((q) => {
       if (q.trim().length < 2) {
         this.results.set([]);
@@ -50,7 +49,6 @@ export class SearchComponent implements OnInit {
       });
     });
 
-    // Handle ?q= from URL
     this.route.queryParamMap.subscribe((params) => {
       const q = params.get('q') ?? '';
       this.query = q;

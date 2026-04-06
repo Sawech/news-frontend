@@ -16,7 +16,6 @@
         </svg>
       </a>
       <h1 class="editor-title">{{ isEdit() ? 'Edit Article' : 'New Article' }}</h1>
-      <!-- Locale badge shown in header for quick reference -->
       <span class="locale-badge locale-badge--{{ form.locale }}">{{
         form.locale | uppercase
       }}</span>
@@ -54,7 +53,6 @@
     }
 
     <div class="editor-body">
-      <!-- Left column: main content -->
       <div class="editor-main">
         <div class="field-group">
           <label class="field-label">Title <span class="req">*</span></label>
@@ -109,9 +107,7 @@
         </div>
       </div>
 
-      <!-- Right column: metadata -->
       <aside class="editor-sidebar">
-        <!-- ── Language ───────────────────────────── -->
         <div class="meta-section">
           <h3 class="meta-section-title">Language</h3>
           <div class="locale-selector">
@@ -127,11 +123,6 @@
               </button>
             }
           </div>
-          @if (isRTL()) {
-            <p class="field-hint rtl-hint">
-              ✦ RTL mode — text fields will accept right-to-left input.
-            </p>
-          }
         </div>
 
         <div class="meta-section">
@@ -201,7 +192,6 @@
           }
         </div>
 
-        <!-- Tags section (replace the existing meta-section for Tags) -->
         <div class="meta-section">
           <div class="meta-section-titleed">
             <h3 class="meta-section-title">Tags</h3>

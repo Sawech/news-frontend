@@ -10,11 +10,9 @@ export class LanguageService {
 
   readonly activeLang = signal<AppLang>('en');
 
-  /** Call once at app startup — waits for translation file to load. */
   init(): Promise<void> {
     const stored = localStorage.getItem('lang') as AppLang | null;
-    const lang: AppLang =
-      stored && ['en', 'fr', 'ar'].includes(stored) ? stored : 'en';
+    const lang: AppLang = stored && ['en', 'fr', 'ar'].includes(stored) ? stored : 'en';
     return this._apply(lang);
   }
 
@@ -28,7 +26,6 @@ export class LanguageService {
     const html = document.documentElement;
     html.setAttribute('lang', lang);
     html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    // Wait for the JSON file to actually load before resolving
     return firstValueFrom(this.translate.use(lang)).then(() => undefined);
   }
 }

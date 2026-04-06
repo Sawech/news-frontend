@@ -25,7 +25,6 @@ export class ArchiveComponent implements OnInit {
   totalPages = signal(1);
   totalArticles = signal(0);
 
-  /** Clipped page window around currentPage for the pagination UI */
   pageNumbers = computed<(number | '...')[]>(() => {
     const total = this.totalPages();
     if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);

@@ -1,5 +1,4 @@
 <main>
-  <!-- ─── HERO: 8 + 4 asymmetric grid ─────────────────────── -->
   <div class="container hero__title">
     <span class="hero__label">{{ 'HERO.LABEL' | translate }}</span>
     <h1 class="hero__main-title">{{ 'HERO.TITLE' | translate }}</h1>
@@ -9,7 +8,6 @@
   </div>
 
   <section class="hero container">
-    <!-- Lead story: 8 cols -->
     @if (featuredArticle(); as hero) {
       <div class="hero__lead" [routerLink]="['/article', hero.slug]">
         <div class="hero__image-wrap">
@@ -28,9 +26,7 @@
       <div class="hero__lead hero__lead--skeleton"></div>
     }
 
-    <!-- Sidebar: 4 cols -->
     <aside class="hero__sidebar">
-      <!-- Morning Brief -->
       <div class="brief">
         <h3 class="brief__heading">{{ 'HERO.TRENDING' | translate }}</h3>
         <ul class="brief__list">
@@ -43,7 +39,6 @@
         </ul>
       </div>
 
-      <!-- Opinion -->
       <div class="opinion">
         <h3 class="opinion__heading">{{ 'HERO.OPINIONS' | translate }}</h3>
         <div class="opinion__items">
@@ -68,7 +63,6 @@
       </div>
     </aside>
   </section>
-  <!-- ─── FILTERS / VIEW TOGGLE ────────────────────────────── -->
   <section class="container filters">
     <div class="filters__tabs">
       @for (tab of orderedFilterTabs(); track tab.value) {
@@ -81,7 +75,6 @@
         </button>
       }
     </div>
-    <!-- filters__view buttons -->
     <div class="filters__view">
       <button
         class="filters__view-btn material-symbols-outlined"
@@ -100,7 +93,6 @@
     </div>
   </section>
 
-  <!-- ─── LATEST DISPATCHES ────────────────────────────────── -->
   <section class="container section-gap">
     <div [class]="viewMode() === 'grid' ? 'articles-grid' : 'articles-list'">
       @for (article of latestArticles(); track article.slug) {
@@ -123,7 +115,6 @@
   </section>
 
   @if (focusArticles().length > 0 && focusCategory()) {
-    <!-- ─── CATEGORY FOCUS: DAILY ──────────────────────────────── -->
     <section class="focus section-gap">
       <div class="container focus__grid">
         <div class="focus__intro">

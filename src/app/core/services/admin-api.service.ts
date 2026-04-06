@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 import {
   AdminArticleListResponse,
   AdminArticleDetail,
@@ -122,10 +122,6 @@ export class AdminApiService {
       this.opts,
     );
   }
-
-  // deleteOpinion(id: number): Observable<{ message: string }> {
-  //   return this.http.delete<{ message: string }>(`${this.adminBase}/opinions/${id}`, this.opts);
-  // }
 
   getAdminCategories(): Observable<{ data: AdminCategoryWithCount[] }> {
     return this.http.get<{ data: AdminCategoryWithCount[] }>(

@@ -1,5 +1,4 @@
 <main class="container search-page">
-  <!-- Search header -->
   <div class="search-header">
     <h1 class="search-title display-lg">{{ 'SEARCH.TITLE' | translate }}</h1>
     <div class="search-field-wrap">
@@ -19,16 +18,13 @@
           {{ 'SEARCH.SEARCHING' | translate }}
         } @else {
           {{ total() }}
-          {{
-            total() !== 1 ? ('SEARCH.RESULTS' | translate) : ('SEARCH.RESULT' | translate)
-          }}
+          {{ total() !== 1 ? ('SEARCH.RESULTS' | translate) : ('SEARCH.RESULT' | translate) }}
           &ldquo;{{ query }}&rdquo;
         }
       </p>
     }
   </div>
 
-  <!-- Results -->
   @if (results().length) {
     <div class="search-results">
       @for (article of results(); track article.slug) {

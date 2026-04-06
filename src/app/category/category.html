@@ -1,7 +1,4 @@
 <main class="cat-page">
-  <!-- ═══════════════════════════════════════════════════
-       PAGE HEADER
-  ═══════════════════════════════════════════════════ -->
   <header class="cat-header">
     <h1 class="cat-header__title">{{ categoryName() }}</h1>
     @if (category()?.description) {
@@ -11,41 +8,9 @@
     }
   </header>
 
-  <!-- ═══════════════════════════════════════════════════
-       REFINE / FILTER BAR
-  ═══════════════════════════════════════════════════ -->
   <section class="cat-filterbar">
     <div class="cat-filterbar__left">
-      <!-- Time Period -->
-      <!-- <div class="cat-filterbar__group">
-        <div class="cat-filterbar__pills">
-          <button
-            class="cat-filter-pill"
-            [class.cat-filter-pill--active]="activeFilter() === 'all'"
-            (click)="setFilter('all')"
-          >
-            Latest
-          </button>
-          <button
-            class="cat-filter-pill"
-            [class.cat-filter-pill--active]="activeFilter() === 'week'"
-            (click)="setFilter('week')"
-          >
-            Past-Week
-          </button>
-          <button
-            class="cat-filter-pill"
-            [class.cat-filter-pill--active]="activeFilter() === 'month'"
-            (click)="setFilter('month')"
-          >
-            Past-Month
-          </button>
-        </div>
-      </div> -->
-
       <div class="cat-filterbar__divider"></div>
-
-      <!-- Tags -->
       <div class="cat-filterbar__group">
         <span class="cat-filterbar__label">Tags:</span>
         <div class="cat-filterbar__tags">
@@ -61,19 +26,10 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="cat-filterbar__advanced">
-      <span class="cat-filterbar__label">Advanced Filters</span>
-      <span class="material-symbols-outlined cat-filterbar__icon">tune</span>
-    </div> -->
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       FEATURED REPORT + SIDEBAR DISPATCHES
-  ═══════════════════════════════════════════════════ -->
   @if (!loading() && featuredArticle()) {
     <section class="cat-featured">
-      <!-- Featured article (left 8-col) -->
       <div class="cat-featured__main group" [routerLink]="['/article', featuredArticle()!.slug]">
         <div class="cat-featured__img-wrap">
           <img
@@ -90,7 +46,9 @@
           <h2 class="cat-featured__title">{{ featuredArticle()!.title }}</h2>
           <p class="cat-featured__excerpt">{{ featuredArticle()!.excerpt }}</p>
           <div class="cat-featured__meta">
-            <span class="cat-meta-label">{{ 'ARTICLE.BY' | translate }} {{ featuredArticle()!.author.name }}</span>
+            <span class="cat-meta-label"
+              >{{ 'ARTICLE.BY' | translate }} {{ featuredArticle()!.author.name }}</span
+            >
             <span class="cat-meta-dot"></span>
             @if (featuredArticle()!.readTime) {
               <span class="cat-meta-label cat-meta-label--muted"
@@ -101,7 +59,6 @@
         </div>
       </div>
 
-      <!-- Sidebar dispatches (right 4-col) -->
       <div class="cat-sidebar">
         <div class="cat-sidebar__card">
           <h3 class="cat-sidebar__heading">{{ 'CAT.LATEST' | translate }}</h3>
@@ -127,7 +84,6 @@
     </section>
   }
 
-  <!-- Featured skeleton -->
   @if (loading()) {
     <section class="cat-featured">
       <div class="cat-featured__main">
@@ -145,15 +101,11 @@
     </section>
   }
 
-  <!-- ═══════════════════════════════════════════════════
-       LATEST DISPATCHES GRID
-  ═══════════════════════════════════════════════════ -->
   <section class="cat-latest">
     <div class="cat-latest__header section-header">
       <h2 class="cat-latest__heading label-md">{{ 'SECTION.LATEST_DISPATCHES' | translate }}</h2>
     </div>
 
-    <!-- Grid -->
     <div class="cat-grid">
       @if (loading()) {
         @for (i of [1, 2, 3, 4, 5, 6]; track i) {
@@ -191,7 +143,6 @@
       }
     </div>
 
-    <!-- Pagination -->
     @if (totalPages() > 1) {
       <div class="pagination">
         <button
@@ -201,7 +152,9 @@
         >
           {{ 'PAGINATION.PREV' | translate }}
         </button>
-        <span class="label-md pagination__info">{{ currentPage() }} {{ 'PAGINATION.OF' | translate }} {{ totalPages() }}</span>
+        <span class="label-md pagination__info"
+          >{{ currentPage() }} {{ 'PAGINATION.OF' | translate }} {{ totalPages() }}</span
+        >
         <button
           class="btn btn-primary"
           [disabled]="currentPage() >= totalPages()"

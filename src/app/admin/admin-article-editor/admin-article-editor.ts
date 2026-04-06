@@ -26,12 +26,10 @@ export class AdminArticleEditorComponent implements OnInit {
     effect(() => {
       const locale = this.form.locale ?? 'en';
       this.api.getAuthors().subscribe({ next: (r) => this.authors.set(r.data), error: () => {} });
-      this.api
-        .getCategories({ locale })
-        .subscribe({
-          next: (r) => this.categories.set(r.data as AdminCategory[]),
-          error: () => {},
-        });
+      this.api.getCategories({ locale }).subscribe({
+        next: (r) => this.categories.set(r.data as AdminCategory[]),
+        error: () => {},
+      });
       this.api.getTags(locale).subscribe({
         next: (r) => {
           this.allTags.set(r.data);
