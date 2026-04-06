@@ -13,8 +13,8 @@ export class AdminLoginComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
 
-  email = 'admin@chronicler.com';
-  password = 'admin123!';
+  email = '';
+  password = '';
   loading = signal(false);
   error = signal('');
 
