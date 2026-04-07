@@ -115,7 +115,7 @@
               <button
                 class="locale-btn"
                 [class.locale-btn--active]="form.locale === opt.value"
-                (click)="form.locale = opt.value; onTitleChange(form.title)"
+                (click)="form.locale = opt.value; onTitleChange(form.title); reloadParameters()"
                 [id]="'locale-' + opt.value"
                 type="button"
               >
@@ -273,7 +273,7 @@
 
   @if (showAddTag()) {
     <div class="modal-backdrop" (click)="closeAddTag()">
-      <div class="modal-card">
+      <div class="modal-card" (click)="$event.stopPropagation()">
         <h2 class="modal-title">
           Add New Tag
           <span class="locale-badge locale-badge--{{ form.locale }}">{{

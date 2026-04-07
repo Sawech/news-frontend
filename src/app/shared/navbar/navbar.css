@@ -5,7 +5,7 @@
   right: 0;
   z-index: 101;
   background: var(--c-primary);
-  color: var(--c-on-primary);
+  color: #ffffff;
   padding: 0.25rem 0;
   overflow: hidden;
 }
@@ -20,7 +20,7 @@
   font-weight: 900;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  background: var(--c-on-primary);
+  background: #ffffff;
   color: var(--c-primary);
   padding: 0.125rem 0.5rem;
   white-space: nowrap;
@@ -68,7 +68,9 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 0;
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 :host-context([data-theme='dark']) .navbar {
   background: rgba(20, 18, 18, 0.88);
@@ -190,7 +192,9 @@
 /* Theme toggle button animation */
 .navbar__theme-btn .theme-icon {
   display: inline-block;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s ease;
 }
 .navbar__theme-btn:hover .theme-icon {
   transform: rotate(30deg) scale(1.15);

@@ -12,10 +12,13 @@ import {
   AdminTicker,
   AdminOpinion,
 } from '../models/admin.model';
-import { CategoryQueryParams } from './api.service';
 
 interface AdminCategoryWithCount extends AdminCategory {
   _count?: { articles: number };
+}
+
+export interface CategoryQueryParams {
+  locale?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -138,16 +141,16 @@ export class AdminApiService {
     );
   }
 
-  deleteCategory(id: string): Observable<{ message: string }> {
-    return this.http.delete<{ message: string }>(`${this.adminBase}/categories/${id}`, this.opts);
+  getCategories(locale: string): Observable<{ data: AdminCategory[] }> {
+    const params = new HttpParams().set('locale', locale);
+    return this.http.get<{ data: AdminCategory[] }>(`${this.publicBase}/categories`, {
+      withCredentials: true,
+      params,
+    });
   }
 
-  getCategories(params: CategoryQueryParams = {}): Observable<{ data: AdminCategory[] }> {
-    const httpParams = new HttpParams().set('locale', String(params.locale));
-    return this.http.get<{ data: AdminCategory[] }>(`${this.publicBase}/categories`, {
-      ...this.opts,
-      params: httpParams,
-    });
+  deleteCategory(id: string): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(`${this.adminBase}/categories/${id}`, this.opts);
   }
 
   getTags(locale: string): Observable<{ data: AdminTag[] }> {

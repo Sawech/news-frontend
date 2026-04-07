@@ -24,6 +24,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
   related = signal<Article[]>([]);
   readProgress = signal(0);
   safeBody = signal<SafeHtml>('');
+  shareOpen = signal(false);
+  shareCopied = signal(false);
 
   @HostListener('window:scroll')
   onScroll() {
@@ -32,8 +34,40 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.readProgress.set(docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0);
   }
 
+  @HostListener('document:click')
+  onDocumentClick() {
+    this.shareOpen.set(false);
+  }
+
   onAvatarError(event: Event) {
     (event.target as HTMLImageElement).classList.add('error');
+  }
+
+  toggleShare(e: Event) {
+    e.stopPropagation();
+    this.shareOpen.update((v) => !v);
+  }
+
+  copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      this.shareCopied.set(true);
+      setTimeout(() => {
+        this.shareCopied.set(false);
+        this.shareOpen.set(false);
+      }, 2000);
+    });
+  }
+
+  shareUrl(platform: 'x' | 'facebook' | 'whatsapp') {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(this.article()?.title ?? '');
+    const links = {
+      x: `https://x.com/intent/tweet?url=${url}&text=${title}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      whatsapp: `https://wa.me/?text=${title}%20${url}`,
+    };
+    window.open(links[platform], '_blank', 'noopener,noreferrer');
+    this.shareOpen.set(false);
   }
 
   authorColor(name: string): string {

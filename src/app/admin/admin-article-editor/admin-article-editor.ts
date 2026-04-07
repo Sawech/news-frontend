@@ -22,26 +22,22 @@ export class AdminArticleEditorComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  constructor() {
-    effect(() => {
-      const locale = this.form.locale ?? 'en';
-      this.api.getAuthors().subscribe({ next: (r) => this.authors.set(r.data), error: () => {} });
-      this.api.getCategories({ locale }).subscribe({
-        next: (r) => this.categories.set(r.data as AdminCategory[]),
-        error: () => {},
-      });
-      this.api.getTags(locale).subscribe({
-        next: (r) => {
-          this.allTags.set(r.data);
-          this.tagsLoaded.set(true);
-        },
-        error: () => {
-          this.tagsLoaded.set(true);
-        },
-      });
+  reloadParameters() {
+    const locale = this.form.locale ?? 'en';
+    this.api.getCategories(locale).subscribe({
+      next: (r) => this.categories.set(r.data as AdminCategory[]),
+      error: () => {},
+    });
+    this.api.getTags(locale).subscribe({
+      next: (r) => {
+        this.allTags.set(r.data);
+        this.tagsLoaded.set(true);
+      },
+      error: () => {
+        this.tagsLoaded.set(true);
+      },
     });
   }
-
   articleId = signal<string | null>(null);
   isEdit = computed(() => !!this.articleId());
 
@@ -85,10 +81,25 @@ export class AdminArticleEditorComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    this.form.locale = 'en';
     if (id) {
       this.articleId.set(id);
       this.loadArticle(id);
     }
+    this.api.getAuthors().subscribe({ next: (r) => this.authors.set(r.data), error: () => {} });
+    this.api.getCategories(this.form.locale).subscribe({
+      next: (r) => this.categories.set(r.data as AdminCategory[]),
+      error: () => {},
+    });
+    this.api.getTags(this.form.locale).subscribe({
+      next: (r) => {
+        this.allTags.set(r.data);
+        this.tagsLoaded.set(true);
+      },
+      error: () => {
+        this.tagsLoaded.set(true);
+      },
+    });
   }
 
   loadArticle(id: string) {
@@ -112,6 +123,7 @@ export class AdminArticleEditorComponent implements OnInit {
           locale: a.locale ?? 'en',
         };
         this.loadingArticle.set(false);
+        this.reloadParameters();
       },
       error: () => {
         this.saveError.set('Failed to load article.');
@@ -185,28 +197,43 @@ export class AdminArticleEditorComponent implements OnInit {
   copyPrompt() {
     const prompt = `You are a document-to-HTML converter.
 Your task is to convert the provided document (PDF or Word content) into clean, semantic HTML.
+
 STRICT RULES:
-- Output ONLY valid HTML. No explanations.
-- Preserve the original structure and meaning exactly.
+- Output ONLY valid HTML. No explanations, no markdown, no code fences.
+- Preserve the original structure, language, and meaning exactly.
+- Do NOT translate, summarize, or alter the content in any way.
+- Do NOT hallucinate or add content.
 - Use proper semantic tags:
   - <h1>, <h2>, <h3> for headings
   - <p> for paragraphs
   - <ul>, <ol>, <li> for lists
-  - <blockquote> for quotes
+  - <blockquote> for block quotes
   - <strong> / <em> for emphasis
 - Do NOT wrap everything in <div> unless necessary.
 - Do NOT add CSS, classes, or inline styles.
-- Do NOT hallucinate or add content.
 - Merge broken lines into proper paragraphs.
 - Keep logical spacing between sections.
+
+LANGUAGE & DIRECTIONALITY RULES:
+- Detect the document language automatically.
+- If the document is in Arabic (or any RTL language):
+  - Add dir="rtl" and lang="ar" to the root <html> tag or the top-level wrapper element.
+  - Preserve all Arabic punctuation exactly: ، ؟ ؛ and others.
+  - For mixed Arabic/Latin or Arabic/number segments, wrap them in <span dir="ltr"> to preserve correct bidi rendering.
+- If the document is in French:
+  - Preserve French punctuation exactly: « », –, œ, æ, ç, é, è, ê, à, etc.
+  - Treat «text» as inline quotes — do NOT convert them to <blockquote> unless they are block-level quotes.
+- If the document is in English or another LTR language, no dir attribute is needed.
+
 FORMATTING RULES:
-- Headings must reflect hierarchy from the document.
-- Quotes must be wrapped in <blockquote>.
-- Remove page numbers, headers, footers.
-- Convert special characters properly (e.g., quotes, symbols).
-- Preserve numerical expressions like 10^16 exactly as written.
+- Headings must reflect the hierarchy from the document.
+- Remove page numbers, headers, and footers.
+- Convert special characters properly (e.g., smart quotes, dashes, symbols).
+- Preserve numerical and mathematical expressions exactly as written (e.g., 10^16).
+
 INPUT:
 {{DOCUMENT_TEXT}}
+
 OUTPUT:
 Clean HTML only.`;
 
@@ -215,7 +242,6 @@ Clean HTML only.`;
       setTimeout(() => this.promptCopied.set(false), 2000);
     });
   }
-
   save(status: 'DRAFT' | 'PUBLISHED') {
     this.saveError.set('');
     this.saveSuccess.set('');
